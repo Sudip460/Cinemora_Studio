@@ -1,38 +1,62 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import {
+  projects,
+  pricingPackages,
+  contacts,
+  type Project,
+  type InsertProject,
+  type PricingPackage,
+  type InsertPricing,
+  type Contact,
+  type InsertContact,
+} from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getProjects(category?: 'reel' | 'full-length'): Promise<Project[]>;
+  getProject(id: number): Promise<Project | undefined>;
+  createProject(project: InsertProject): Promise<Project>;
+  
+  getPricingPackages(category?: 'reel' | 'full-length'): Promise<PricingPackage[]>;
+  createPricingPackage(pkg: InsertPricing): Promise<PricingPackage>;
+
+  createContact(contact: InsertContact): Promise<Contact>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getProjects(category?: 'reel' | 'full-length'): Promise<Project[]> {
+    if (category) {
+      return await db.select().from(projects).where(eq(projects.category, category));
+    }
+    return await db.select().from(projects);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getProject(id: number): Promise<Project | undefined> {
+    const [project] = await db.select().from(projects).where(eq(projects.id, id));
+    return project;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async createProject(project: InsertProject): Promise<Project> {
+    const [newProject] = await db.insert(projects).values(project).returning();
+    return newProject;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getPricingPackages(category?: 'reel' | 'full-length'): Promise<PricingPackage[]> {
+    if (category) {
+      return await db.select().from(pricingPackages).where(eq(pricingPackages.category, category));
+    }
+    return await db.select().from(pricingPackages);
+  }
+
+  async createPricingPackage(pkg: InsertPricing): Promise<PricingPackage> {
+    const [newPkg] = await db.insert(pricingPackages).values(pkg).returning();
+    return newPkg;
+  }
+
+  async createContact(contact: InsertContact): Promise<Contact> {
+    const [newContact] = await db.insert(contacts).values(contact).returning();
+    return newContact;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
