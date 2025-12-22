@@ -4,6 +4,7 @@ import { insertContactSchema, type ContactInput } from "@shared/schema";
 import { useSubmitContact } from "@/hooks/use-contact";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { DynamicBackground } from "@/components/DynamicBackground";
 import { motion } from "framer-motion";
 import { Loader2, Mail, MapPin } from "lucide-react";
 import {
@@ -49,17 +50,7 @@ export default function Contact() {
       <Navbar />
 
       <div className="relative pt-32 pb-20 container mx-auto px-4 md:px-6">
-        {/* Background animation */}
-        <motion.div
-          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tl from-secondary/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-        />
+        <DynamicBackground />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start relative z-10">
           

@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, PlayCircle, Zap, Film, Sparkles, BarChart3 } from "lucide-react";
+import { ArrowRight, PlayCircle, Zap, Film, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Timeline } from "@/components/Timeline";
+import { DynamicBackground } from "@/components/DynamicBackground";
 import { useProjects } from "@/hooks/use-projects";
 import circLogo from "@assets/Picsart_25-10-04_22-03-18-563_1766355441351.png";
 
@@ -37,42 +38,9 @@ export default function Home() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
 
-      {/* HERO - Cinematic Video Editing Theme */}
+      {/* HERO - Enhanced with Dynamic Background */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Animated gradient background with film effect */}
-        <div className="absolute inset-0 z-0">
-          {/* Base gradient */}
-          <div className="absolute inset-0 color-grade-bg" />
-          
-          {/* Animated circles */}
-          <motion.div
-            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/4 -left-40 w-96 h-96 bg-gradient-to-br from-primary via-purple-400 to-transparent dark:from-primary/40 rounded-full blur-3xl opacity-40 dark:opacity-50"
-          />
-          <motion.div
-            animate={{ rotate: -360, scale: [1, 0.9, 1] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-40 -right-20 w-96 h-96 bg-gradient-to-tl from-secondary via-cyan-300 to-transparent dark:from-secondary/40 rounded-full blur-3xl opacity-40 dark:opacity-50"
-          />
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute top-1/2 right-1/4 w-72 h-72 bg-gradient-to-bl from-accent via-orange-300 to-transparent dark:from-accent/40 rounded-full blur-3xl opacity-30 dark:opacity-40"
-          />
-
-          {/* Floating particles */}
-          {[...Array(6)].map((_, i) => (
-            <FloatingParticle 
-              key={i} 
-              delay={i * 0.3} 
-              duration={4 + i * 0.5}
-            />
-          ))}
-
-          {/* Film strip overlay */}
-          <div className="absolute inset-0 film-strip opacity-20" />
-        </div>
+        <DynamicBackground />
 
         {/* Content */}
         <div className="container relative z-20 px-4 md:px-6 text-center">
@@ -97,7 +65,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Main Heading - Artistic Typography */}
+          {/* Main Heading */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -124,7 +92,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          {/* Divider Line */}
+          {/* Divider */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -132,7 +100,7 @@ export default function Home() {
             className="h-1 w-32 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mb-8 rounded-full"
           />
           
-          {/* Subheading - Artistic */}
+          {/* Subheading */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -145,7 +113,7 @@ export default function Home() {
             </p>
           </motion.div>
           
-          {/* CTA Buttons - Enhanced */}
+          {/* CTA Buttons */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -187,18 +155,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About - Creative Section */}
+      {/* About */}
       <section className="relative py-32 bg-gradient-to-b from-background via-card/30 to-background border-y border-foreground/10 overflow-hidden">
-        {/* Animated background elements */}
-        <motion.div
-          className="absolute inset-0 film-strip opacity-10"
-          animate={{ x: [0, 100] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
+        <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-            {/* Text */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -222,7 +184,6 @@ export default function Home() {
                 At Cinemora Studio, every frame is an opportunity for creative expression. We specialize in transforming raw footage into compelling visual narratives that captivate audiences and drive engagement.
               </p>
               
-              {/* Stats with creative cards */}
               <div className="grid grid-cols-2 gap-6">
                 <motion.div 
                   whileHover={{ y: -8 }}
@@ -241,7 +202,6 @@ export default function Home() {
               </div>
             </motion.div>
             
-            {/* Visual - Gallery with artistic borders */}
             <motion.div 
               className="grid grid-cols-2 gap-6 perspective"
               initial={{ opacity: 0, x: 50 }}
@@ -283,8 +243,10 @@ export default function Home() {
       </section>
 
       {/* Featured Work */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="relative py-32 bg-background overflow-hidden">
+        <DynamicBackground />
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -325,14 +287,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process - Timeline */}
+      {/* Process */}
       <section className="relative py-32 bg-gradient-to-r from-card via-background to-card border-y border-foreground/10 overflow-hidden">
-        {/* Animated background */}
-        <motion.div
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-secondary/10 rounded-full blur-3xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        />
+        <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
@@ -356,8 +313,10 @@ export default function Home() {
       </section>
       
       {/* Services */}
-      <section className="py-32 bg-background">
-        <div className="container mx-auto px-4 md:px-6">
+      <section className="relative py-32 bg-background overflow-hidden">
+        <DynamicBackground />
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -428,14 +387,7 @@ export default function Home() {
 
       {/* Final CTA */}
       <section className="relative py-40 overflow-hidden">
-        {/* Dynamic background */}
-        <div className="absolute inset-0 z-0">
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/20 dark:from-primary/30 dark:via-accent/20 dark:to-secondary/30 rounded-full blur-3xl"
-          />
-        </div>
+        <DynamicBackground />
         
         <div className="container relative z-10 text-center px-4">
           <motion.h2 

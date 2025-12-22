@@ -1,8 +1,9 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { usePricing } from "@/hooks/use-pricing";
-import { Check, Zap, Film, Sparkles } from "lucide-react";
+import { Check, Zap, Film } from "lucide-react";
 import { motion } from "framer-motion";
+import { DynamicBackground } from "@/components/DynamicBackground";
 import type { PricingPackage } from "@shared/schema";
 
 export default function Services() {
@@ -17,17 +18,7 @@ export default function Services() {
       
       {/* Header */}
       <section className="relative pt-40 pb-24 container mx-auto px-4 md:px-6 text-center overflow-hidden">
-        {/* Animated background */}
-        <motion.div
-          className="absolute -top-1/2 left-0 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute -bottom-1/4 -right-20 w-96 h-96 bg-gradient-to-tl from-secondary/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-        />
+        <DynamicBackground />
         
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -51,12 +42,8 @@ export default function Services() {
       </section>
 
       {/* Reels Section */}
-      <section className="relative py-32 border-y border-foreground/10 bg-gradient-to-b from-card/30 to-background">
-        <motion.div
-          className="absolute inset-0 film-strip opacity-5"
-          animate={{ x: [0, 100] }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        />
+      <section className="relative py-32 border-y border-foreground/10 bg-gradient-to-b from-card/30 to-background overflow-hidden">
+        <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
@@ -83,12 +70,8 @@ export default function Services() {
       </section>
 
       {/* Full Length Section */}
-      <section className="relative py-32 bg-background">
-        <motion.div
-          className="absolute top-1/2 -right-1/4 w-96 h-96 bg-gradient-to-tl from-secondary/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-        />
+      <section className="relative py-32 bg-background overflow-hidden">
+        <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
@@ -116,11 +99,7 @@ export default function Services() {
 
       {/* CTA */}
       <section className="relative py-32 bg-gradient-to-r from-card via-background to-card overflow-hidden">
-        <motion.div
-          className="absolute -top-1/3 -left-1/4 w-96 h-96 bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-3xl"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-        />
+        <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <motion.div
