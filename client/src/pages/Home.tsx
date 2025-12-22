@@ -124,7 +124,7 @@ export default function Home() {
               <motion.button 
                 whileHover={{ scale: 1.08, boxShadow: "0 0 30px hsl(var(--primary) / 0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-primary to-purple-600 dark:to-purple-500 text-white font-black tracking-wider rounded-lg flex items-center gap-3 transition-all shadow-xl text-lg"
+                className="px-10 py-5 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 text-white font-black tracking-wider rounded-lg flex items-center gap-3 transition-all shadow-xl text-lg"
               >
                 <PlayCircle size={24} />
                 EXPLORE WORK
@@ -417,7 +417,7 @@ export default function Home() {
               <motion.button 
                 whileHover={{ scale: 1.1, boxShadow: "0 0 40px hsl(var(--primary) / 0.6)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-6 bg-gradient-to-r from-primary to-purple-600 dark:to-purple-500 text-white font-black text-xl rounded-lg hover:shadow-2xl transition-all tracking-wider flex items-center gap-3 mx-auto glow-primary"
+                className="px-12 py-6 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 text-white font-black text-xl rounded-lg hover:shadow-2xl transition-all tracking-wider flex items-center gap-3 mx-auto glow-primary"
               >
                 START YOUR PROJECT <ArrowRight size={24} />
               </motion.button>

@@ -138,7 +138,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       whileHover={{ y: -12 }}
       className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all ${
         pkg.isPopular 
-          ? "bg-gradient-to-br from-primary/20 dark:from-primary/30 to-primary/5 dark:to-primary/10 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(109,40,217,0.3)]" 
+          ? "bg-gradient-to-br from-primary/20 dark:from-primary/30 to-primary/5 dark:to-primary/10 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
           : "bg-gradient-to-br from-card to-card/80 border-foreground/10 hover:border-primary/40"
       }`}
       data-testid={`card-pricing-${pkg.id}`}
@@ -147,7 +147,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
         <motion.div 
           initial={{ y: -20 }}
           animate={{ y: 0 }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-purple-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg"
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-orange-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg"
         >
           ⭐ MOST POPULAR
         </motion.div>
@@ -176,7 +176,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
         whileTap={{ scale: 0.95 }}
         className={`w-full py-4 rounded-xl font-black text-base tracking-wider transition-all ${
           pkg.isPopular 
-            ? "bg-gradient-to-r from-primary to-purple-600 text-white hover:shadow-lg dark:shadow-[0_0_20px_rgba(109,40,217,0.3)]" 
+            ? "bg-gradient-to-r from-primary to-orange-600 text-white hover:shadow-lg dark:shadow-[0_0_20px_rgba(255,127,0,0.3)]" 
             : "bg-foreground/10 text-foreground hover:bg-foreground/20 border border-foreground/20"
         }`}
         data-testid={`button-choose-${pkg.id}`}

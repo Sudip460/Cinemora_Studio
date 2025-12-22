@@ -207,7 +207,7 @@ export default function Contact() {
                   <Button 
                     type="submit" 
                     disabled={submitContact.isPending}
-                    className="w-full h-12 bg-gradient-to-r from-primary to-purple-600 dark:to-purple-500 hover:shadow-lg text-white font-black text-base tracking-wider transition-all"
+                    className="w-full h-12 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 hover:shadow-lg text-white font-black text-base tracking-wider transition-all"
                     data-testid="button-submit"
                   >
                     {submitContact.isPending ? (

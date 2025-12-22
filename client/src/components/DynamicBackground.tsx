@@ -184,7 +184,7 @@ export function DynamicBackground() {
       ))}
 
       {/* Light Theme Enhanced - Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-purple-50/20 to-pink-50/40 dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-orange-50/20 to-pink-50/40 dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
     </div>
   );
 }

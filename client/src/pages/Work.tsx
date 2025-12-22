@@ -60,7 +60,7 @@ export default function Work() {
                 whileTap={{ scale: 0.95 }}
                 className={`px-7 py-3 text-sm font-black rounded-xl transition-all flex items-center gap-2 whitespace-nowrap tracking-wide ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg dark:shadow-[0_0_30px_rgba(109,40,217,0.4)]"
+                    ? "bg-gradient-to-r from-primary to-orange-600 text-white shadow-lg dark:shadow-[0_0_30px_rgba(255,127,0,0.4)]"
                     : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
                 }`}
                 data-testid={`button-filter-${tab.id}`}
