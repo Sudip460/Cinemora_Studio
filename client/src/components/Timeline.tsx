@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { FileVideo, Scissors, Palette, Wand2, UploadCloud } from "lucide-react";
+import { useRef } from "react";
 
 const steps = [
   { icon: FileVideo, title: "Import", desc: "Raw Footage Intake" },
@@ -10,10 +11,25 @@ const steps = [
 ];
 
 export function Timeline() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+  
+  // Map scroll progress to line width (0 to 100%)
+  const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <div className="relative py-20 overflow-hidden">
-      {/* Horizontal Line */}
-      <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent -translate-y-1/2 hidden md:block" />
+    <div ref={containerRef} className="relative py-20 overflow-hidden">
+      {/* Horizontal Line Background */}
+      <div className="absolute top-1/2 left-0 w-full h-0.5 bg-primary/20 -translate-y-1/2 hidden md:block" />
+      
+      {/* Animated Line that fills on scroll */}
+      <motion.div 
+        style={{ width: lineWidth }}
+        className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-primary via-primary to-accent -translate-y-1/2 hidden md:block transition-all"
+      />
       
       <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 relative z-10">
         {steps.map((step, i) => (
@@ -31,8 +47,17 @@ export function Timeline() {
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
               
-              {/* Connector Dot */}
-              <div className="absolute -bottom-10 md:top-1/2 md:-right-[calc(50%-2rem)] md:translate-x-1/2 md:-translate-y-1/2 w-3 h-3 bg-card border-2 border-primary rounded-full z-20 hidden md:block" />
+              {/* Connector Dot - filled when line reaches it */}
+              <motion.div 
+                className="absolute -bottom-10 md:top-1/2 md:-right-[calc(50%-2rem)] md:translate-x-1/2 md:-translate-y-1/2 w-3 h-3 bg-card border-2 border-primary rounded-full z-20 hidden md:block transition-all"
+                style={{
+                  backgroundColor: useTransform(
+                    scrollYProgress,
+                    [i / (steps.length - 1) - 0.1, i / (steps.length - 1) + 0.1],
+                    ["hsl(var(--card))", "hsl(var(--primary))"]
+                  )
+                }}
+              />
             </div>
             
             <h4 className="text-lg font-display font-bold text-white mb-1">{step.title}</h4>

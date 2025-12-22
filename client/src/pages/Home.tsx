@@ -145,7 +145,7 @@ export default function Home() {
           <motion.div 
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2.5, repeat: Infinity }}
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-30"
           >
             <div className="flex flex-col items-center gap-2">
               <span className="text-xs uppercase tracking-widest text-primary font-semibold">Scroll to explore</span>

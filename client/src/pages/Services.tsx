@@ -138,8 +138,8 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       whileHover={{ y: -12 }}
       className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all ${
         pkg.isPopular 
-          ? "bg-gradient-to-br from-primary/20 dark:from-primary/30 to-primary/5 dark:to-primary/10 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
-          : "bg-gradient-to-br from-card to-card/80 border-foreground/10 hover:border-primary/40"
+          ? "bg-gradient-to-b from-primary/20 dark:from-primary/30 via-primary/10 to-primary/5 dark:to-primary/5 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
+          : "bg-gradient-to-b from-card via-card/90 to-card/70 border-foreground/10 hover:border-primary/40"
       }`}
       data-testid={`card-pricing-${pkg.id}`}
     >
