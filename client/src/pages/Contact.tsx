@@ -45,11 +45,23 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
 
-      <div className="pt-32 pb-20 container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+      <div className="relative pt-32 pb-20 container mx-auto px-4 md:px-6">
+        {/* Background animation */}
+        <motion.div
+          className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-primary/20 to-transparent rounded-full blur-3xl"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tl from-secondary/20 to-transparent rounded-full blur-3xl"
+          animate={{ rotate: -360 }}
+          transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start relative z-10">
           
           {/* Left Column: Info */}
           <motion.div
@@ -57,39 +69,48 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-accent font-mono text-sm tracking-widest uppercase block mb-4">Get in touch</span>
-            <h1 className="text-5xl md:text-6xl font-display font-black text-foreground mb-8">
+            <motion.span 
+              className="text-accent font-mono text-sm tracking-widest uppercase block mb-6 font-bold"
+              whileInView={{ x: [0, 5, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              ✦ Get in Touch
+            </motion.span>
+            
+            <h1 className="text-6xl md:text-7xl font-serif font-black text-foreground mb-8 leading-tight">
               Let's Create <br/>
               <span className="text-gradient">Something Epic.</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-              Ready to elevate your content? Fill out the form and tell us about your project. We typically respond within 24 hours.
+            <p className="text-xl text-muted-foreground mb-14 leading-relaxed font-medium">
+              Ready to elevate your content? Tell us about your project, vision, and timeline. We typically respond within 24 hours.
             </p>
 
-            <div className="space-y-8">
+            <div className="space-y-10">
               <motion.div 
-                className="flex items-start gap-4"
-                whileHover={{ x: 4 }}
+                className="group flex items-start gap-5"
+                whileHover={{ x: 8 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="p-3 bg-primary/20 dark:bg-primary/30 border border-primary/30 rounded-lg text-primary shrink-0">
-                  <Mail size={24} />
+                <div className="p-4 bg-gradient-to-br from-primary/30 to-primary/10 border-2 border-primary/40 rounded-xl text-primary shrink-0 group-hover:scale-110 transition-transform">
+                  <Mail size={28} />
                 </div>
                 <div>
-                  <h3 className="text-foreground font-bold text-lg">Email Us</h3>
-                  <p className="text-muted-foreground">hello@cinemora.studio</p>
+                  <h3 className="text-foreground font-black text-2xl mb-2">Email</h3>
+                  <p className="text-muted-foreground text-lg font-medium">hello@cinemora.studio</p>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="flex items-start gap-4"
-                whileHover={{ x: 4 }}
+                className="group flex items-start gap-5"
+                whileHover={{ x: 8 }}
+                transition={{ duration: 0.3 }}
               >
-                <div className="p-3 bg-secondary/20 dark:bg-secondary/30 border border-secondary/30 rounded-lg text-secondary shrink-0">
-                  <MapPin size={24} />
+                <div className="p-4 bg-gradient-to-br from-secondary/30 to-secondary/10 border-2 border-secondary/40 rounded-xl text-secondary shrink-0 group-hover:scale-110 transition-transform">
+                  <MapPin size={28} />
                 </div>
                 <div>
-                  <h3 className="text-foreground font-bold text-lg">Location</h3>
-                  <p className="text-muted-foreground">Los Angeles, CA<br/>(Working Globally Remote)</p>
+                  <h3 className="text-foreground font-black text-2xl mb-2">Location</h3>
+                  <p className="text-muted-foreground text-lg font-medium">Los Angeles, CA<br/>(Working Globally Remote)</p>
                 </div>
               </motion.div>
             </div>
@@ -100,9 +121,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="bg-card border-2 border-foreground/10 p-8 md:p-10 rounded-2xl shadow-lg hover:shadow-xl transition-shadow"
+            className="artistic-card bg-gradient-to-br from-card via-card/90 to-background border-2 border-foreground/10 p-10 md:p-12 shadow-2xl"
           >
-            <h2 className="text-2xl font-display font-bold text-foreground mb-8">Project Inquiry</h2>
+            <h2 className="text-3xl font-serif font-black text-foreground mb-10">Project Inquiry</h2>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -112,12 +133,12 @@ export default function Contact() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Name</FormLabel>
+                      <FormLabel className="text-foreground font-black text-sm">Full Name</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="John Doe" 
                           {...field} 
-                          className="bg-background border-foreground/20 text-foreground placeholder:text-muted-foreground focus:border-primary h-11"
+                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
                           data-testid="input-name"
                         />
                       </FormControl>
@@ -131,13 +152,13 @@ export default function Contact() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Email</FormLabel>
+                      <FormLabel className="text-foreground font-black text-sm">Email Address</FormLabel>
                       <FormControl>
                         <Input 
                           placeholder="john@example.com" 
                           type="email" 
                           {...field} 
-                          className="bg-background border-foreground/20 text-foreground placeholder:text-muted-foreground focus:border-primary h-11"
+                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
                           data-testid="input-email"
                         />
                       </FormControl>
@@ -151,14 +172,14 @@ export default function Contact() {
                   name="serviceType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Service Type</FormLabel>
+                      <FormLabel className="text-foreground font-black text-sm">Service Type</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value || "reel"}>
                         <FormControl>
-                          <SelectTrigger className="bg-background border-foreground/20 text-foreground h-11" data-testid="select-service">
+                          <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-service">
                             <SelectValue placeholder="Select project type" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent className="bg-card border-foreground/10">
+                        <SelectContent className="bg-card border-2 border-foreground/10">
                           <SelectItem value="reel">⚡ Reel / Short Form</SelectItem>
                           <SelectItem value="full-length">🎬 Full Length / Documentary</SelectItem>
                           <SelectItem value="other">✨ Other Inquiry</SelectItem>
@@ -174,11 +195,11 @@ export default function Contact() {
                   name="message"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-semibold">Project Details</FormLabel>
+                      <FormLabel className="text-foreground font-black text-sm">Project Details</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Tell us about your vision, timeline, and budget..." 
-                          className="bg-background border-foreground/20 text-foreground placeholder:text-muted-foreground focus:border-primary min-h-[150px] resize-none" 
+                          placeholder="Tell us about your vision, timeline, budget, and creative direction..." 
+                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary min-h-[160px] resize-none font-medium" 
                           {...field}
                           data-testid="textarea-message"
                         />
@@ -188,26 +209,31 @@ export default function Contact() {
                   )}
                 />
 
-                <Button 
-                  type="submit" 
-                  disabled={submitContact.isPending}
-                  className="w-full h-11 bg-primary hover:bg-primary/90 text-white font-bold text-base tracking-wide transition-all hover:shadow-lg"
-                  data-testid="button-submit"
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {submitContact.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-                    </>
-                  ) : (
-                    "SEND MESSAGE"
-                  )}
-                </Button>
+                  <Button 
+                    type="submit" 
+                    disabled={submitContact.isPending}
+                    className="w-full h-12 bg-gradient-to-r from-primary to-purple-600 dark:to-purple-500 hover:shadow-lg text-white font-black text-base tracking-wider transition-all"
+                    data-testid="button-submit"
+                  >
+                    {submitContact.isPending ? (
+                      <>
+                        <Loader2 className="mr-3 h-5 w-5 animate-spin" /> SENDING...
+                      </>
+                    ) : (
+                      "SEND MESSAGE"
+                    )}
+                  </Button>
+                </motion.div>
 
                 {submitContact.isSuccess && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-500/20 border border-green-500/50 rounded-lg text-green-700 dark:text-green-300 text-sm"
+                    className="p-4 bg-green-500/20 dark:bg-green-500/30 border-2 border-green-500/50 rounded-lg text-green-700 dark:text-green-300 text-center font-black"
                   >
                     ✓ Message sent! We'll get back to you soon.
                   </motion.div>
