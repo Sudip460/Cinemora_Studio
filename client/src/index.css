@@ -4,36 +4,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* LIGHT MODE (DEFAULT) */
 :root {
-  /* Cinematic Dark Theme - Deep Blacks & Electric Accents */
-  --background: 240 10% 4%;     /* Almost Black #09090b */
-  --foreground: 0 0% 98%;       /* White #fafafa */
-
-  --card: 240 10% 6%;           /* #0e0e11 */
-  --card-foreground: 0 0% 98%;
-
-  --popover: 240 10% 4%;
-  --popover-foreground: 0 0% 98%;
-
-  --primary: 263 70% 50%;       /* Electric Purple #6d28d9 */
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 190 90% 50%;     /* Cyan Accent #06b6d4 */
-  --secondary-foreground: 240 10% 4%;
-
-  --muted: 240 4% 16%;
-  --muted-foreground: 240 5% 65%;
-
-  --accent: 240 4% 16%;
-  --accent-foreground: 0 0% 98%;
-
+  --background: 0 0% 99%;           /* Off-white #fafafa */
+  --foreground: 0 0% 8%;            /* Dark gray #141414 */
+  
+  --card: 0 0% 100%;                /* White */
+  --card-foreground: 0 0% 8%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  
+  --primary: 263 70% 50%;           /* Electric Purple */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 190 90% 45%;         /* Cyan */
+  --secondary-foreground: 0 0% 100%;
+  
+  --muted: 240 4% 85%;
+  --muted-foreground: 0 0% 40%;
+  
+  --accent: 28 100% 53%;            /* Vibrant Orange/Amber */
+  --accent-foreground: 0 0% 100%;
+  
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-
-  --border: 240 4% 16%;
-  --input: 240 4% 16%;
+  
+  --border: 240 4% 90%;
+  --input: 0 0% 100%;
   --ring: 263 70% 50%;
-
+  
   --radius: 0.5rem;
   
   --font-sans: 'Inter', sans-serif;
@@ -41,12 +41,44 @@
   --font-mono: 'Fira Code', monospace;
 }
 
+/* DARK MODE */
+.dark {
+  --background: 240 10% 4%;         /* Almost Black */
+  --foreground: 0 0% 98%;
+  
+  --card: 240 10% 6%;
+  --card-foreground: 0 0% 98%;
+  
+  --popover: 240 10% 4%;
+  --popover-foreground: 0 0% 98%;
+  
+  --primary: 263 70% 50%;
+  --primary-foreground: 210 40% 98%;
+  
+  --secondary: 190 90% 50%;
+  --secondary-foreground: 240 10% 4%;
+  
+  --muted: 240 4% 16%;
+  --muted-foreground: 240 5% 65%;
+  
+  --accent: 28 100% 55%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --border: 240 4% 16%;
+  --input: 240 4% 16%;
+  --ring: 263 70% 50%;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
+  
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30 selection:text-white;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-primary/30;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -56,25 +88,73 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple-400 to-secondary;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
   }
   
   .glass-panel {
-    @apply bg-card/60 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-background/40 backdrop-blur-xl border border-foreground/10 shadow-xl;
   }
   
   .neon-glow {
-    box-shadow: 0 0 10px theme('colors.primary.DEFAULT'), 0 0 20px theme('colors.primary.DEFAULT');
+    box-shadow: 0 0 20px theme('colors.primary.DEFAULT'), 0 0 40px theme('colors.primary.DEFAULT') / 0.2;
+  }
+  
+  .film-strip {
+    position: relative;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--tw-bg-opacity) 0px,
+      var(--tw-bg-opacity) 40px,
+      transparent 40px,
+      transparent 45px
+    );
+  }
+  
+  .color-grade-effect {
+    background: linear-gradient(135deg, rgba(263, 70%, 50%, 0.1) 0%, rgba(190, 90%, 50%, 0.1) 100%);
+  }
+  
+  .timeline-gradient {
+    background: linear-gradient(90deg, var(--accent) 0%, var(--secondary) 50%, var(--primary) 100%);
   }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
+
 ::-webkit-scrollbar-track {
   @apply bg-background;
 }
+
 ::-webkit-scrollbar-thumb {
-  @apply bg-muted rounded-full hover:bg-muted-foreground/50 transition-colors;
+  @apply bg-primary rounded-full hover:bg-primary/70 transition-colors;
+}
+
+/* Smooth transitions for theme */
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Film strip animation */
+@keyframes filmScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-film-scroll {
+  animation: filmScroll 20s linear infinite;
+}
+
+/* Glitch effect for headings */
+@keyframes glitch {
+  0% { text-shadow: -2px 0 #ff006e, 2px 0 #00f5ff; }
+  50% { text-shadow: 2px 0 #ff006e, -2px 0 #00f5ff; }
+  100% { text-shadow: -2px 0 #ff006e, 2px 0 #00f5ff; }
+}
+
+.text-glitch {
+  animation: glitch 0.5s ease-in-out;
 }
