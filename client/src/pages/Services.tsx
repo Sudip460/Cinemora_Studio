@@ -136,10 +136,10 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       viewport={{ once: true }}
       transition={{ delay: delay * 0.1 }}
       whileHover={{ y: -12 }}
-      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all ${
+      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all overflow-hidden ${
         pkg.isPopular 
-          ? "bg-gradient-to-r from-primary/20 dark:from-primary/30 via-primary/10 via-50% to-transparent dark:to-primary/5 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
-          : "bg-gradient-to-r from-card via-card/80 via-60% to-background border-foreground/10 hover:border-primary/40"
+          ? "bg-gradient-to-r from-primary/25 dark:from-primary/35 to-transparent border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
+          : "bg-gradient-to-r from-card/90 to-background border-foreground/10 hover:border-primary/40"
       }`}
       data-testid={`card-pricing-${pkg.id}`}
     >
