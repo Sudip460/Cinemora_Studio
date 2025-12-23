@@ -21,7 +21,7 @@ export function Timeline() {
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div ref={containerRef} className="relative py-20 overflow-hidden">
+    <div ref={containerRef} className="relative py-20 overflow-hidden" style={{ position: 'relative' }}>
       {/* Horizontal Line Background */}
       <div className="absolute top-1/2 left-0 w-full h-0.5 bg-primary/20 -translate-y-1/2 hidden md:block" />
       
