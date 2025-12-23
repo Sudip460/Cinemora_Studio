@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "wouter";
 import { ArrowRight, PlayCircle, Zap, Film, Sparkles } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
@@ -7,6 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { Timeline } from "@/components/Timeline";
 import { DynamicBackground } from "@/components/DynamicBackground";
 import { useProjects } from "@/hooks/use-projects";
+import { useRef } from "react";
 import circLogo from "@assets/Picsart_25-10-04_22-03-18-563_1766355441351.png";
 
 const FloatingParticle = ({ delay, duration }: { delay: number; duration: number }) => (
@@ -33,6 +34,9 @@ const FloatingParticle = ({ delay, duration }: { delay: number; duration: number
 export default function Home() {
   const { data: projects, isLoading } = useProjects();
   const featuredProjects = projects?.slice(0, 3) || [];
+  const scrollIndicatorRef = useRef(null);
+  const { scrollY } = useScroll();
+  const scrollOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -143,8 +147,10 @@ export default function Home() {
 
           {/* Scroll indicator */}
           <motion.div 
-            animate={{ y: [0, 12, 0] }}
+            ref={scrollIndicatorRef}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2.5, repeat: Infinity }}
+            style={{ opacity: scrollOpacity }}
             className="fixed bottom-12 left-1/2 -translate-x-1/2 z-30"
           >
             <div className="flex flex-col items-center gap-2">
