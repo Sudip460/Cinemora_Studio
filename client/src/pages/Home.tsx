@@ -144,22 +144,22 @@ export default function Home() {
               </motion.button>
             </Link>
           </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div 
-            ref={scrollIndicatorRef}
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity }}
-            style={{ opacity: scrollOpacity }}
-            className="fixed bottom-12 left-1/2 -translate-x-1/2 z-30"
-          >
-            <div className="flex flex-col items-center gap-2">
-              <span className="text-xs uppercase tracking-widest text-primary font-semibold">Scroll to explore</span>
-              <div className="w-0.5 h-8 bg-gradient-to-b from-primary via-secondary to-transparent rounded-full" />
-            </div>
-          </motion.div>
         </div>
       </section>
+
+      {/* Scroll indicator - outside section for proper centering */}
+      <motion.div 
+        ref={scrollIndicatorRef}
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity }}
+        style={{ opacity: scrollOpacity }}
+        className="fixed bottom-12 left-1/2 z-50"
+      >
+        <div className="flex flex-col items-center gap-2 -translate-x-1/2">
+          <span className="text-xs uppercase tracking-widest text-primary font-semibold">Scroll to explore</span>
+          <div className="w-0.5 h-8 bg-gradient-to-b from-primary via-secondary to-transparent rounded-full" />
+        </div>
+      </motion.div>
 
       {/* About */}
       <section className="relative py-32 bg-gradient-to-b from-background via-card/30 to-background border-y border-foreground/10 overflow-hidden">
