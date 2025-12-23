@@ -41,7 +41,7 @@ export function Timeline() {
             transition={{ delay: i * 0.15 }}
             className="flex flex-col items-center text-center group"
           >
-            <div className="w-16 h-16 rounded-2xl bg-card border border-white/10 flex items-center justify-center mb-6 relative group-hover:border-primary/50 transition-colors bg-gradient-to-b from-white/5 to-transparent">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-b from-primary/15 to-primary/5 dark:from-primary/20 dark:to-primary/10 border-2 border-primary/40 dark:border-primary/60 flex items-center justify-center mb-6 relative group-hover:border-primary/70 dark:group-hover:border-primary/80 transition-colors">
               <step.icon className="text-muted-foreground group-hover:text-primary transition-colors w-7 h-7" />
               
               {/* Glow Effect */}
