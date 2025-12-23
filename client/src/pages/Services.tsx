@@ -136,40 +136,33 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       viewport={{ once: true }}
       transition={{ delay: delay * 0.1 }}
       whileHover={{ y: -12 }}
-      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all overflow-hidden ${
+      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all ${
         pkg.isPopular 
-          ? "bg-card border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
-          : "bg-card border-foreground/10 hover:border-primary/40"
+          ? "bg-gradient-to-r from-primary/20 dark:from-primary/30 via-primary/10 via-50% to-transparent dark:to-primary/5 border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
+          : "bg-gradient-to-r from-card via-card/80 via-60% to-background border-foreground/10 hover:border-primary/40"
       }`}
       data-testid={`card-pricing-${pkg.id}`}
     >
-      {/* Gradient overlay that extends across full width */}
-      <div className={`absolute top-0 left-0 right-0 bottom-0 pointer-events-none rounded-2xl ${
-        pkg.isPopular
-          ? "bg-gradient-to-r from-primary/30 via-primary/15 via-70% to-transparent dark:from-primary/40 dark:via-primary/20"
-          : "bg-gradient-to-r from-foreground/8 via-foreground/3 via-75% to-transparent"
-      }`} />
-      
       {pkg.isPopular && (
         <motion.div 
           initial={{ y: -20 }}
           animate={{ y: 0 }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-orange-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg z-10"
+          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-orange-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg"
         >
           ⭐ MOST POPULAR
         </motion.div>
       )}
 
-      <h3 className="text-3xl font-serif font-black text-foreground mb-4 relative z-10">{pkg.name}</h3>
-      <div className="mb-6 relative z-10">
+      <h3 className="text-3xl font-serif font-black text-foreground mb-4">{pkg.name}</h3>
+      <div className="mb-6">
         <span className="text-6xl font-serif font-black text-gradient">{pkg.price}</span>
         <span className="text-muted-foreground text-base ml-3 font-semibold">/ project</span>
       </div>
-      <p className="text-muted-foreground mb-10 leading-relaxed flex-grow text-lg relative z-10">
+      <p className="text-muted-foreground mb-10 leading-relaxed flex-grow text-lg">
         {pkg.description}
       </p>
 
-      <ul className="space-y-4 mb-10 relative z-10">
+      <ul className="space-y-4 mb-10">
         {pkg.features?.map((feature, i) => (
           <li key={i} className="flex items-start gap-3 text-sm text-foreground font-medium">
             <Check size={20} className="text-primary mt-0.5 shrink-0 font-bold" />
@@ -181,7 +174,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       <motion.button 
         whileHover={{ scale: 1.04 }}
         whileTap={{ scale: 0.95 }}
-        className={`w-full py-4 rounded-xl font-black text-base tracking-wider transition-all relative z-10 ${
+        className={`w-full py-4 rounded-xl font-black text-base tracking-wider transition-all ${
           pkg.isPopular 
             ? "bg-gradient-to-r from-primary to-orange-600 text-white hover:shadow-lg dark:shadow-[0_0_20px_rgba(255,127,0,0.3)]" 
             : "bg-foreground/10 text-foreground hover:bg-foreground/20 border border-foreground/20"
