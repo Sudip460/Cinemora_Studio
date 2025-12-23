@@ -60,7 +60,7 @@ export function Timeline() {
               />
             </div>
             
-            <h4 className="text-lg font-display font-bold text-white mb-1">{step.title}</h4>
+            <h4 className="text-lg font-display font-bold text-foreground mb-1">{step.title}</h4>
             <p className="text-xs text-muted-foreground uppercase tracking-widest">{step.desc}</p>
           </motion.div>
         ))}
