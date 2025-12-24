@@ -98,8 +98,8 @@
   
   .text-gradient-bold {
     @apply text-gradient font-black;
-    text-shadow: 0 0 40px rgba(109, 40, 217, 0.3);
-    filter: drop-shadow(0 0 20px rgba(109, 40, 217, 0.15));
+    text-shadow: 0 0 40px rgba(255, 127, 0, 0.3);
+    filter: drop-shadow(0 0 20px rgba(255, 127, 0, 0.15));
   }
   
   /* Neon Light Theme Glow */
