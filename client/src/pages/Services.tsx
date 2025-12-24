@@ -6,6 +6,59 @@ import { motion } from "framer-motion";
 import { DynamicBackground } from "@/components/DynamicBackground";
 import type { PricingPackage } from "@shared/schema";
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const iconSpinVariants = {
+  rotate: {
+    rotate: 360,
+    transition: {
+      duration: 3,
+      repeat: Infinity,
+      ease: "linear",
+    },
+  },
+};
+
+const pulseVariants = {
+  pulse: {
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+    },
+  },
+};
+
+const textRevealVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.05,
+      duration: 0.4,
+    },
+  }),
+};
+
 export default function Services() {
   const { data: packages, isLoading } = usePricing();
 
@@ -23,21 +76,32 @@ export default function Services() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="relative z-10"
         >
           <motion.span 
             className="text-primary font-mono text-sm tracking-widest uppercase block mb-6 font-bold"
-            whileInView={{ x: [0, 5, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={{ x: [0, 5, 0], opacity: [1, 0.7, 1] }}
+            transition={{ duration: 2.5, repeat: Infinity }}
           >
             ✦ Pricing
           </motion.span>
-          <h1 className="text-7xl md:text-8xl font-serif font-black text-foreground mb-8 glow-text">
+          <motion.h1 
+            className="text-7xl md:text-8xl font-serif font-black text-foreground mb-8 glow-text"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
             Professional Rates
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             Transparent, competitive pricing for professional video editing. Choose the package that matches your creative needs and budget.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
@@ -47,25 +111,53 @@ export default function Services() {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="flex items-center gap-6 mb-16"
           >
-            <div className="p-5 bg-gradient-to-br from-primary/30 to-primary/10 rounded-2xl text-primary">
+            <motion.div 
+              className="p-5 bg-gradient-to-br from-primary/30 to-primary/10 rounded-2xl text-primary"
+              variants={iconSpinVariants}
+              animate="rotate"
+              whileHover={pulseVariants.pulse}
+            >
               <Zap size={36} />
-            </div>
+            </motion.div>
             <div className="text-left">
-              <h2 className="text-5xl font-serif font-black text-foreground">Reels & Shorts</h2>
-              <p className="text-muted-foreground mt-2 text-lg">Fast-paced editing for TikTok, Instagram Reels, and YouTube Shorts (under 60 seconds)</p>
+              <motion.h2 
+                className="text-5xl font-serif font-black text-foreground"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Reels & Shorts
+              </motion.h2>
+              <motion.p 
+                className="text-muted-foreground mt-2 text-lg"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Fast-paced editing for TikTok, Instagram Reels, and YouTube Shorts (under 60 seconds)
+              </motion.p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
              {isLoading ? <LoadingCards count={2} /> : reelPackages.length > 0 ? (
                reelPackages.map((pkg, i) => <PricingCard key={pkg.id} pkg={pkg} delay={i} />)
              ) : <EmptyState />}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -75,25 +167,53 @@ export default function Services() {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="flex items-center gap-6 mb-16"
           >
-            <div className="p-5 bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-2xl text-secondary">
+            <motion.div 
+              className="p-5 bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-2xl text-secondary"
+              variants={iconSpinVariants}
+              animate="rotate"
+              whileHover={pulseVariants.pulse}
+            >
               <Film size={36} />
-            </div>
+            </motion.div>
             <div className="text-left">
-              <h2 className="text-5xl font-serif font-black text-foreground">Full Length</h2>
-              <p className="text-muted-foreground mt-2 text-lg">Professional storytelling for YouTube, documentaries, commercials, and branded content</p>
+              <motion.h2 
+                className="text-5xl font-serif font-black text-foreground"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                Full Length
+              </motion.h2>
+              <motion.p 
+                className="text-muted-foreground mt-2 text-lg"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                Professional storytelling for YouTube, documentaries, commercials, and branded content
+              </motion.p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
              {isLoading ? <LoadingCards count={2} /> : fullPackages.length > 0 ? (
                fullPackages.map((pkg, i) => <PricingCard key={pkg.id} pkg={pkg} delay={i} />)
              ) : <EmptyState />}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -106,19 +226,47 @@ export default function Services() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-6xl md:text-7xl font-serif font-black text-foreground mb-8 glow-text">Need Something Custom?</h2>
-            <p className="text-muted-foreground text-xl max-w-2xl mx-auto mb-12 leading-relaxed">
-              Every project is unique. Let's discuss your specific creative vision and build a custom package tailored to your needs.
-            </p>
-            <motion.a 
-              href="/contact"
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block px-12 py-5 bg-gradient-to-r from-accent to-orange-500 dark:to-orange-400 text-white font-black text-lg rounded-xl hover:shadow-xl transition-all tracking-wider"
+            <motion.h2 
+              className="text-6xl md:text-7xl font-serif font-black text-foreground mb-8 glow-text"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
-              GET A QUOTE
-            </motion.a>
+              Need Something Custom?
+            </motion.h2>
+            <motion.p 
+              className="text-muted-foreground text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              Every project is unique. Let's discuss your specific creative vision and build a custom package tailored to your needs.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <motion.a 
+                href="/contact"
+                whileHover={{ scale: 1.08, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-block px-12 py-5 bg-gradient-to-r from-primary to-orange-500 dark:to-orange-400 text-white font-black text-lg rounded-xl hover:shadow-xl transition-all tracking-wider relative overflow-hidden"
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-white/20"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.5 }}
+                />
+                <span className="relative">GET A QUOTE</span>
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -131,57 +279,128 @@ export default function Services() {
 function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true }}
-      transition={{ delay: delay * 0.1 }}
-      whileHover={{ y: -12 }}
-      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all overflow-hidden ${
+      transition={{ delay: delay * 0.15, duration: 0.5 }}
+      whileHover={{ y: -16, transition: { duration: 0.3 } }}
+      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all overflow-hidden group ${
         pkg.isPopular 
           ? "bg-gradient-to-r from-primary/25 dark:from-primary/35 to-transparent border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
           : "bg-gradient-to-r from-card/90 to-background border-foreground/10 hover:border-primary/40"
       }`}
       data-testid={`card-pricing-${pkg.id}`}
     >
+      {/* Animated background glow effect */}
+      <motion.div 
+        className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 opacity-0 group-hover:opacity-10 rounded-2xl"
+        animate={{ rotate: [0, 360] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+      />
+
       {pkg.isPopular && (
         <motion.div 
-          initial={{ y: -20 }}
-          animate={{ y: 0 }}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          whileHover={{ scale: 1.05 }}
           className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-orange-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg"
         >
           ⭐ MOST POPULAR
         </motion.div>
       )}
 
-      <h3 className="text-3xl font-serif font-black text-foreground mb-4">{pkg.name}</h3>
-      <div className="mb-6">
-        <span className="text-6xl font-serif font-black text-gradient">{pkg.price}</span>
-        <span className="text-muted-foreground text-base ml-3 font-semibold">/ project</span>
-      </div>
-      <p className="text-muted-foreground mb-10 leading-relaxed flex-grow text-lg">
-        {pkg.description}
-      </p>
+      <motion.h3 
+        className="text-3xl font-serif font-black text-foreground mb-4 relative z-10"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay * 0.15 + 0.1 }}
+      >
+        {pkg.name}
+      </motion.h3>
 
-      <ul className="space-y-4 mb-10">
+      <motion.div 
+        className="mb-6 relative z-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay * 0.15 + 0.15 }}
+      >
+        <motion.span 
+          className="text-6xl font-serif font-black text-gradient"
+          whileInView={{ scale: [0.95, 1.05, 1] }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: delay * 0.15 + 0.2 }}
+        >
+          {pkg.price}
+        </motion.span>
+        <motion.span 
+          className="text-muted-foreground text-base ml-3 font-semibold"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: delay * 0.15 + 0.25 }}
+        >
+          / project
+        </motion.span>
+      </motion.div>
+
+      <motion.p 
+        className="text-muted-foreground mb-10 leading-relaxed flex-grow text-lg relative z-10"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay * 0.15 + 0.2 }}
+      >
+        {pkg.description}
+      </motion.p>
+
+      <motion.ul 
+        className="space-y-4 mb-10 relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         {pkg.features?.map((feature, i) => (
-          <li key={i} className="flex items-start gap-3 text-sm text-foreground font-medium">
-            <Check size={20} className="text-primary mt-0.5 shrink-0 font-bold" />
+          <motion.li 
+            key={i} 
+            className="flex items-start gap-3 text-sm text-foreground font-medium"
+            variants={itemVariants}
+          >
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ delay: i * 0.1, duration: 0.4, repeat: Infinity, repeatDelay: 2 }}
+            >
+              <Check size={20} className="text-primary mt-0.5 shrink-0 font-bold" />
+            </motion.div>
             <span>{feature}</span>
-          </li>
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
 
       <motion.button 
-        whileHover={{ scale: 1.04 }}
+        whileHover={{ scale: 1.04, y: -2 }}
         whileTap={{ scale: 0.95 }}
-        className={`w-full py-4 rounded-xl font-black text-base tracking-wider transition-all ${
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: delay * 0.15 + 0.3 }}
+        className={`w-full py-4 rounded-xl font-black text-base tracking-wider transition-all relative overflow-hidden group/btn z-10 ${
           pkg.isPopular 
             ? "bg-gradient-to-r from-primary to-orange-600 text-white hover:shadow-lg dark:shadow-[0_0_20px_rgba(255,127,0,0.3)]" 
             : "bg-foreground/10 text-foreground hover:bg-foreground/20 border border-foreground/20"
         }`}
         data-testid={`button-choose-${pkg.id}`}
       >
-        CHOOSE PLAN
+        <motion.div 
+          className="absolute inset-0 bg-white/20"
+          initial={{ x: "-100%" }}
+          whileHover={{ x: "100%" }}
+          transition={{ duration: 0.4 }}
+        />
+        <span className="relative">CHOOSE PLAN</span>
       </motion.button>
     </motion.div>
   );
@@ -191,9 +410,24 @@ function LoadingCards({ count = 3 }: { count?: number }) {
   return (
     <>
       {Array(count).fill(0).map((_, i) => (
-        <div key={i} className="h-96 bg-gradient-to-br from-card/50 to-background rounded-2xl animate-pulse border-2 border-foreground/10 relative overflow-hidden">
-          <div className="absolute inset-0 film-strip opacity-10" />
-        </div>
+        <motion.div 
+          key={i} 
+          className="h-96 bg-gradient-to-br from-card/50 to-background rounded-2xl border-2 border-foreground/10 relative overflow-hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1 }}
+        >
+          <motion.div 
+            className="absolute inset-0 film-strip opacity-10"
+            animate={{ opacity: [0.1, 0.3, 0.1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+            animate={{ x: ["−100%", "100%"] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          />
+        </motion.div>
       ))}
     </>
   );
@@ -201,8 +435,21 @@ function LoadingCards({ count = 3 }: { count?: number }) {
 
 function EmptyState() {
   return (
-    <div className="col-span-full py-20 text-center text-muted-foreground border-2 border-dashed border-foreground/20 rounded-2xl">
-      <p className="text-xl font-serif font-black">Pricing packages coming soon</p>
-    </div>
+    <motion.div 
+      className="col-span-full py-20 text-center text-muted-foreground border-2 border-dashed border-foreground/20 rounded-2xl"
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      whileHover={{ scale: 1.02 }}
+    >
+      <motion.p 
+        className="text-xl font-serif font-black"
+        animate={{ opacity: [1, 0.6, 1] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Pricing packages coming soon
+      </motion.p>
+    </motion.div>
   );
 }
