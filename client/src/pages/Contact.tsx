@@ -6,7 +6,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { DynamicBackground } from "@/components/DynamicBackground";
 import { motion } from "framer-motion";
-import { Loader2, Mail, MapPin } from "lucide-react";
+import { Loader2, Mail, MapPin, Instagram } from "lucide-react";
 import {
   Form,
   FormControl,
@@ -77,6 +77,20 @@ export default function Contact() {
             </p>
 
             <div className="space-y-10">
+              <motion.div 
+                className="group flex items-start gap-5"
+                whileHover={{ x: 8 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="p-4 bg-gradient-to-br from-accent/30 to-accent/10 border-2 border-accent/40 rounded-xl text-accent shrink-0 group-hover:scale-110 transition-transform">
+                  <Instagram size={28} />
+                </div>
+                <div>
+                  <h3 className="text-foreground font-black text-2xl mb-2">Instagram</h3>
+                  <p className="text-muted-foreground text-lg font-medium">@cinemora.studio</p>
+                </div>
+              </motion.div>
+              
               <motion.div 
                 className="group flex items-start gap-5"
                 whileHover={{ x: 8 }}
