@@ -195,7 +195,7 @@ export default function Home() {
                   whileHover={{ y: -8 }}
                   className="group p-6 bg-gradient-to-br from-primary/20 dark:from-primary/30 to-primary/5 dark:to-primary/10 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all"
                 >
-                  <h3 className="text-5xl font-serif font-black text-primary mb-2 group-hover:text-glow-primary">500+</h3>
+                  <h3 className="text-5xl font-serif font-black text-primary mb-2 group-hover:text-glow-primary">250+</h3>
                   <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Videos Edited</p>
                 </motion.div>
                 <motion.div 
@@ -216,17 +216,17 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <motion.div className="space-y-6 translate-y-8">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden cine-border shadow-2xl group"
                 >
-                  <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&q=80" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/Click.png" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden border-4 border-accent/40 shadow-2xl group"
                 >
-                  <img src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&q=80" alt="Color Grade" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/Dream.png" alt="Color Grade" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
               </motion.div>
               <motion.div className="space-y-6 mt-8">
@@ -234,13 +234,13 @@ export default function Home() {
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden border-4 border-secondary/40 shadow-2xl group"
                 >
-                  <img src="https://images.unsplash.com/photo-1616469829941-c7200edec809?w=800&q=80" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/Screenshot 2026-01-10 002427.png" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden cine-border shadow-2xl group"
                 >
-                  <img src="https://images.unsplash.com/photo-1598899138022-ddfb0587ae1d?w=800&q=80" alt="Effects" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/Screenshot 2026-01-10 002657.png" alt="Effects" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
               </motion.div>
             </motion.div>

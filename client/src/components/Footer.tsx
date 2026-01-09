@@ -43,13 +43,13 @@ export function Footer() {
           <div>
             <h4 className="text-white font-display font-bold mb-6">CONNECT</h4>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-muted-foreground">
+              <a href="https://www.instagram.com/cinemora_studio_?igsh=MXdkbXJxZ3Z6a2k1bA==" className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-muted-foreground">
                 <Instagram size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-600 hover:text-white flex items-center justify-center transition-all text-muted-foreground">
                 <Youtube size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 hover:bg-secondary hover:text-black flex items-center justify-center transition-all text-muted-foreground">
+              <a href="https://mail.google.com/mail/u/0/#drafts?compose=DmwnWrRmVpXRqVzkWWfPSpHjglVNNTrjZVbRchzMzTHRBWJlgfnkKlcFsZgMqPdbTldMbfffwmtL" className="w-10 h-10 rounded-full bg-white/5 hover:bg-secondary hover:text-black flex items-center justify-center transition-all text-muted-foreground">
                 <Mail size={18} />
               </a>
             </div>

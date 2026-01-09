@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertContactSchema, type ContactInput } from "@shared/schema";
+import { insertContactSchema } from "@shared/schema";
+import { type ContactInput } from "@shared/routes";
 import { useSubmitContact } from "@/hooks/use-contact";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -87,7 +88,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-foreground font-black text-2xl mb-2">Instagram</h3>
-                  <p className="text-muted-foreground text-lg font-medium">@cinemora.studio</p>
+                  <p className="text-muted-foreground text-lg font-medium">@cinemora_studio_</p>
                 </div>
               </motion.div>
               
@@ -101,7 +102,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-foreground font-black text-2xl mb-2">Email</h3>
-                  <p className="text-muted-foreground text-lg font-medium">hello@cinemora.studio</p>
+                  <p className="text-muted-foreground text-lg font-medium">sudip460debnath@gmail.com</p>
                 </div>
               </motion.div>
               
@@ -115,7 +116,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-foreground font-black text-2xl mb-2">Location</h3>
-                  <p className="text-muted-foreground text-lg font-medium">Los Angeles, CA<br/>(Working Globally Remote)</p>
+                  <p className="text-muted-foreground text-lg font-medium">Bengaluru, India<br/>(Working Globally Remote)</p>
                 </div>
               </motion.div>
             </div>

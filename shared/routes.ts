@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertProjectSchema, insertPricingSchema, insertContactSchema, projects, pricingPackages, contacts } from './schema';
+import { insertContactSchema, Project, PricingPackage } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -23,14 +23,14 @@ export const api = {
         category: z.enum(['reel', 'full-length']).optional(),
       }).optional(),
       responses: {
-        200: z.array(z.custom<typeof projects.$inferSelect>()),
+        200: z.array(z.custom<Project>()),
       },
     },
     get: {
       method: 'GET' as const,
       path: '/api/projects/:id',
       responses: {
-        200: z.custom<typeof projects.$inferSelect>(),
+        200: z.custom<Project>(),
         404: errorSchemas.notFound,
       },
     }
@@ -43,7 +43,7 @@ export const api = {
         category: z.enum(['reel', 'full-length']).optional(),
       }).optional(),
       responses: {
-        200: z.array(z.custom<typeof pricingPackages.$inferSelect>()),
+        200: z.array(z.custom<PricingPackage>()),
       },
     },
   },
@@ -53,8 +53,9 @@ export const api = {
       path: '/api/contact',
       input: insertContactSchema,
       responses: {
-        201: z.custom<typeof contacts.$inferSelect>(),
+        201: z.object({ message: z.string() }),
         400: errorSchemas.validation,
+        500: errorSchemas.internal,
       },
     },
   },
@@ -72,6 +73,4 @@ export function buildUrl(path: string, params?: Record<string, string | number>)
   return url;
 }
 
-export type ProjectInput = z.infer<typeof insertProjectSchema>;
-export type PricingInput = z.infer<typeof insertPricingSchema>;
 export type ContactInput = z.infer<typeof insertContactSchema>;
