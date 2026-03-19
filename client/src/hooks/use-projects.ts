@@ -15,16 +15,3 @@ export function useProjects(category?: 'reel' | 'full-length') {
     },
   });
 }
-
-export function useProject(id: number) {
-  return useQuery({
-    queryKey: [api.projects.get.path, id],
-    queryFn: async () => {
-      const url = buildUrl(api.projects.get.path, { id });
-      const res = await fetch(url);
-      if (res.status === 404) return null;
-      if (!res.ok) throw new Error("Failed to fetch project");
-      return api.projects.get.responses[200].parse(await res.json());
-    },
-  });
-}

@@ -4,7 +4,7 @@ export function DynamicBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Animated Grid Background */}
-      <svg className="absolute inset-0 w-full h-full opacity-40 dark:opacity-20" preserveAspectRatio="none">
+      <svg className="absolute inset-0 w-full h-full opacity-70 dark:opacity-20" preserveAspectRatio="none">
         <defs>
           <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
             <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--primary) / 0.3)" strokeWidth="0.5"/>
@@ -185,6 +185,60 @@ export function DynamicBackground() {
 
       {/* Light Theme Enhanced - Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-orange-50/20 to-pink-50/40 dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
+
+      {/* Light Theme Animated Shapes */}
+      <motion.div
+        className="absolute top-10 right-10 w-72 h-72 rounded-full dark:hidden"
+        style={{
+          background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
+        }}
+        animate={{
+          scale: [1, 1.15, 1],
+          x: [0, 20, 0],
+          y: [0, -20, 0],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      
+      <motion.div
+        className="absolute bottom-20 left-20 w-80 h-80 rounded-full dark:hidden"
+        style={{
+          background: "radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%)",
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          x: [0, -15, 0],
+          y: [0, 25, 0],
+        }}
+        transition={{
+          duration: 11,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      <motion.div
+        className="absolute top-1/2 left-1/3 w-96 h-96 rounded-full dark:hidden"
+        style={{
+          background: "radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%)",
+        }}
+        animate={{
+          scale: [1, 1.2, 1],
+          x: [0, 30, 0],
+          y: [0, -30, 0],
+        }}
+        transition={{
+          duration: 13,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
+
     </div>
   );
 }

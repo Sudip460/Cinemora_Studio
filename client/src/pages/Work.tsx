@@ -72,27 +72,56 @@ export default function Work() {
           </div>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-          {isLoading ? (
-            [1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="aspect-video bg-gradient-to-br from-card to-card/50 animate-pulse rounded-xl border-2 border-foreground/10 relative overflow-hidden">
-                <div className="absolute inset-0 film-strip opacity-20" />
+        {/* Grid - Responsive Layout for ALL WORK */}
+        {activeTab === "all" ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
+            {isLoading ? (
+              Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl" />
+              ))
+            ) : projects && projects.length >= 6 ? (
+              (() => {
+                const reels = projects.filter(p => p.category === 'reel');
+                const fulls = projects.filter(p => p.category === 'full-length');
+                const allProjects = [
+                  reels[0], fulls[0], reels[1],
+                  fulls[1], reels[2], fulls[2]
+                ].filter(Boolean);
+
+                return allProjects.map((project, index) => (
+                  <div key={project.id} className="flex flex-col">
+                    <ProjectCard project={project} index={index} />
+                  </div>
+                ));
+              })()
+            ) : (
+              <div className="col-span-full py-40 text-center border-2 border-dashed border-foreground/20 rounded-2xl bg-card/50 backdrop-blur">
+                <p className="text-2xl font-serif font-black text-muted-foreground">No projects yet</p>
+                <p className="text-muted-foreground mt-2">Check back soon for our latest edits</p>
               </div>
-            ))
-          ) : projects && projects.length > 0 ? (
-            projects.map((project, i) => (
-              <ProjectCard key={project.id} project={project} index={i} />
-            ))
-          ) : (
-            <div className="col-span-full py-40 text-center border-2 border-dashed border-foreground/20 rounded-2xl bg-card/50 backdrop-blur">
-              <p className="text-2xl font-serif font-black text-muted-foreground">No projects yet</p>
-              <p className="text-muted-foreground mt-2">Check back soon for our latest edits</p>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            {isLoading ? (
+              [1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="aspect-video bg-gradient-to-br from-card to-card/50 animate-pulse rounded-xl border-2 border-foreground/10 relative overflow-hidden">
+                  <div className="absolute inset-0 film-strip opacity-20" />
+                </div>
+              ))
+            ) : projects && projects.length > 0 ? (
+              projects.map((project, i) => (
+                <ProjectCard key={project.id} project={project} index={i} />
+              ))
+            ) : (
+              <div className="col-span-full py-40 text-center border-2 border-dashed border-foreground/20 rounded-2xl bg-card/50 backdrop-blur">
+                <p className="text-2xl font-serif font-black text-muted-foreground">No projects yet</p>
+                <p className="text-muted-foreground mt-2">Check back soon for our latest edits</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
-      
       <Footer />
     </div>
   );

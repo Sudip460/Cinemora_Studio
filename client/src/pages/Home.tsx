@@ -220,7 +220,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden cine-border shadow-2xl group"
                 >
-                  <img src="/thumbnailss/Click.png" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/pexels-ron-lach-8100065.jpg" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
@@ -234,7 +234,7 @@ export default function Home() {
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden border-4 border-secondary/40 shadow-2xl group"
                 >
-                  <img src="/thumbnailss/Screenshot 2026-01-10 002427.png" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/ChatGPT Image Jan 11, 2026, 12_10_01 AM.png" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
@@ -248,10 +248,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Work */}
+      {/* Featured Work - Grid with Reel/Full-Length Separation */}
       <section className="relative py-32 bg-background overflow-hidden">
         <DynamicBackground />
-        
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -279,17 +278,33 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {isLoading ? (
-               [1, 2, 3].map(i => (
-                 <div key={i} className="aspect-[16/9] bg-card border-2 border-foreground/10 animate-pulse rounded-xl" />
-               ))
-            ) : featuredProjects.length > 0 ? (
-               featuredProjects.map((project, i) => (
-                 <ProjectCard key={project.id} project={project} index={i} />
-               ))
-            ) : null}
-          </div>
+          {/* Separate reels and full-length videos for responsive grid layout */}
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl" />
+              ))}
+            </div>
+          ) : projects && projects.length >= 6 ? (
+            (() => {
+              const reels = projects.filter(p => p.category === 'reel');
+              const fulls = projects.filter(p => p.category === 'full-length');
+              const allProjects = [
+                reels[0], fulls[0], reels[1],
+                fulls[1], reels[2], fulls[2]
+              ].filter(Boolean);
+
+              return (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                  {allProjects.map((project, index) => (
+                    <div key={project.id} className="flex flex-col">
+                      <ProjectCard project={project} index={index} />
+                    </div>
+                  ))}
+                </div>
+              );
+            })()
+          ) : null}
         </div>
       </section>
 

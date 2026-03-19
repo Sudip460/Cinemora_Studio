@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertContactSchema } from "@shared/schema";
 import { type ContactInput } from "@shared/routes";
-import { useSubmitContact } from "@/hooks/use-contact";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { DynamicBackground } from "@/components/DynamicBackground";
@@ -26,24 +26,90 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+
+const servicePlans = {
+  reel: [
+    { value: "basic-reel", label: "Basic Reel - ₹500" },
+    { value: "pro-reel", label: "Pro Reel - ₹1000" },
+  ],
+  "full-length": [
+    { value: "youtube-standard", label: "YouTube Standard - ₹1500" },
+    { value: "cinematic-doc", label: "Cinematic Documentary - ₹2000+" },
+  ],
+};
 
 export default function Contact() {
-  const submitContact = useSubmitContact();
+  const { toast } = useToast();
+  const [selectedService, setSelectedService] = useState<"reel" | "full-length" | "other" | null>("reel");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<ContactInput>({
     resolver: zodResolver(insertContactSchema),
     defaultValues: {
       name: "",
       email: "",
+      contactNo: "",
       message: "",
       serviceType: "reel",
+      servicePlan: "",
     },
   });
 
-  function onSubmit(data: ContactInput) {
-    submitContact.mutate(data, {
-      onSuccess: () => form.reset(),
-    });
+  // Watch for serviceType changes
+  const serviceType = form.watch("serviceType");
+  useEffect(() => {
+    setSelectedService(serviceType as "reel" | "full-length" | "other" | null);
+    if (serviceType !== "reel" && serviceType !== "full-length") {
+      form.setValue("servicePlan", "");
+    }
+  }, [serviceType, form]);
+
+  async function onSubmit(data: ContactInput) {
+    setIsSubmitting(true);
+    try {
+      const formData = new FormData();
+      formData.append("access_key", "c4f36f8b-b45c-4080-8ee5-f1d93accdbb1");
+      formData.append("to_email", "cinemorastudio460@gmail.com");
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("contactNo", data.contactNo);
+      formData.append("serviceType", data.serviceType || "");
+      formData.append("servicePlan", data.servicePlan || "");
+      formData.append("message", data.message);
+      formData.append("from_name", "Cinemora Studio Website");
+
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast({
+          title: "Message Sent!",
+          description: "We'll be in touch with you shortly.",
+          variant: "default",
+        });
+        form.reset();
+        setSelectedService("reel");
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -102,7 +168,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h3 className="text-foreground font-black text-2xl mb-2">Email</h3>
-                  <p className="text-muted-foreground text-lg font-medium">sudip460debnath@gmail.com</p>
+                      <p className="text-muted-foreground text-lg font-medium">cinemorastudio460@gmail.com</p>
                 </div>
               </motion.div>
               
@@ -175,26 +241,75 @@ export default function Contact() {
 
                 <FormField
                   control={form.control}
-                  name="serviceType"
+                  name="contactNo"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground font-black text-sm">Service Type</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value || "reel"}>
-                        <FormControl>
-                          <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-service">
-                            <SelectValue placeholder="Select project type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent className="bg-card border-2 border-foreground/10">
-                          <SelectItem value="reel">⚡ Reel / Short Form</SelectItem>
-                          <SelectItem value="full-length">🎬 Full Length / Documentary</SelectItem>
-                          <SelectItem value="other">✨ Other Inquiry</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      <FormLabel className="text-foreground font-black text-sm">Contact Number</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="xx xxxx xxxx" 
+                          type="tel" 
+                          {...field} 
+                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
+                          data-testid="input-contact"
+                        />
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="serviceType"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-foreground font-black text-sm">Service</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value || "reel"}>
+                          <FormControl>
+                            <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-service">
+                              <SelectValue placeholder="Select project type" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-card border-2 border-foreground/10">
+                            <SelectItem value="reel">⚡ Reel / Short Form</SelectItem>
+                            <SelectItem value="full-length">🎬 Full Length / Documentary</SelectItem>
+                            <SelectItem value="other">✨ Other Inquiry</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {(selectedService === "reel" || selectedService === "full-length") && (
+                    <FormField
+                      control={form.control}
+                      name="servicePlan"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-foreground font-black text-sm">Service Plan</FormLabel>
+                          <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
+                            <FormControl>
+                              <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-plan">
+                                <SelectValue placeholder="Select plan" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent className="bg-card border-2 border-foreground/10">
+                              {servicePlans[selectedService as "reel" | "full-length"]?.map((plan) => (
+                                <SelectItem key={plan.value} value={plan.value}>
+                                  {plan.label}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  )}
+                </div>
 
                 <FormField
                   control={form.control}
@@ -221,11 +336,11 @@ export default function Contact() {
                 >
                   <Button 
                     type="submit" 
-                    disabled={submitContact.isPending}
+                    disabled={isSubmitting}
                     className="w-full h-12 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 hover:shadow-lg text-white font-black text-base tracking-wider transition-all"
                     data-testid="button-submit"
                   >
-                    {submitContact.isPending ? (
+                    {isSubmitting ? (
                       <>
                         <Loader2 className="mr-3 h-5 w-5 animate-spin" /> SENDING...
                       </>
@@ -235,13 +350,13 @@ export default function Contact() {
                   </Button>
                 </motion.div>
 
-                {submitContact.isSuccess && (
+                {form.formState.isDirty && !isSubmitting && (
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-500/20 dark:bg-green-500/30 border-2 border-green-500/50 rounded-lg text-green-700 dark:text-green-300 text-center font-black"
+                    className="p-4 bg-blue-500/20 dark:bg-blue-500/30 border-2 border-blue-500/50 rounded-lg text-blue-700 dark:text-blue-300 text-center font-black text-sm"
                   >
-                    ✓ Message sent! We'll get back to you soon.
+                    Ready to send your inquiry
                   </motion.div>
                 )}
               </form>

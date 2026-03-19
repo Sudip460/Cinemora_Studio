@@ -11,26 +11,26 @@ const projectsData = [
     title: "Neon City Drift",
     description: "High-energy automotive cinematic reel featuring underground racing scenes.",
     category: "reel",
-    videoUrl: "https://www.youtube.com/embed/lI9prf38pe8?si=kv6N3GiR7B42SiVu", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop",
+    videoUrl: "https://drive.google.com/file/d/14yoViPlj5ZNIf2ttMzT2455PAuzEKNZX/preview", // Replace with actual YouTube embed URL
+    thumbnailUrl: "/thumbnailss/reel1.png",
     tags: ["Automotive", "High Energy", "Music Sync"],
   },
   {
     id: 2,
-    title: "Urban Fashion Week",
-    description: "Fast-paced fashion montage for a streetwear brand launch.",
-    category: "reel",
-    videoUrl: "https://www.youtube.com/embed/lI9prf38pe8?si=kv6N3GiR7B42SiVu", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1000&auto=format&fit=crop",
+    title: "Indus Battle Royale | The ULTIMATE Face Off!",
+    description: "Epic showdown in Indus Battle Royale! Bengal and Punjab are facing off",
+    category: "full-length",
+    videoUrl: "https://www.youtube.com/embed/eHWZ4gYqRNw?si=fDl4XgV5Iiqszh95", // Replace with actual YouTube embed URL
+    thumbnailUrl: "/thumbnailss/vid1.jpeg",
     tags: ["Fashion", "Lifestyle", "Trendy"],
   },
   {
     id: 3,
-    title: "The Art of Coffee",
-    description: "Documentary style short film about artisanal coffee roasting.",
+    title: "How to become RICH in your 20s (In Bengali)",
+    description: "If you want to see yourself being successful and rich in 20 years, then this video is for you.",
     category: "full-length",
     videoUrl: "https://www.youtube.com/embed/lI9prf38pe8?si=kv6N3GiR7B42SiVu", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000&auto=format&fit=crop",
+    thumbnailUrl: "/thumbnailss/vid2.jpeg",
     tags: ["Documentary", "Cinematic", "Storytelling"],
   },
   {
@@ -60,6 +60,43 @@ const projectsData = [
     thumbnailUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop",
     tags: ["Fitness", "Motivation", "Glitch"],
   },
+  {
+    id: 7,
+    title: "YouTube Shorts Showcase",
+    description: "Quick viral moment captured in YouTube Shorts format.",
+    category: "reel",
+    videoUrl: "https://drive.google.com/file/d/1uFfxom_j5vV1m5yN8Oq1wqsWy2Rirmpu/preview", // Replace with actual YouTube embed URL
+    thumbnailUrl: "/thumbnailss/reel3.png",
+    tags: ["YouTube", "Shorts", "Viral"],
+  },
+  // New Google Drive videos
+  {
+    id: 8,
+    title: "Your Google Drive Video 1",
+    description: "Description of your first Google Drive video.",
+    category: "reel",
+    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_1/preview", // Replace with actual Google Drive embed URL
+    thumbnailUrl: "/thumbnailss/gdrive1.jpg", // Add thumbnail image
+    tags: ["Custom", "Google Drive", "Reel"],
+  },
+  {
+    id: 9,
+    title: "Your Google Drive Video 2",
+    description: "Description of your second Google Drive video.",
+    category: "full-length",
+    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_2/preview", // Replace with actual Google Drive embed URL
+    thumbnailUrl: "/thumbnailss/gdrive2.jpg", // Add thumbnail image
+    tags: ["Custom", "Google Drive", "Full Length"],
+  },
+  {
+    id: 10,
+    title: "Your Google Drive Video 3",
+    description: "Description of your third Google Drive video.",
+    category: "reel",
+    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_3/preview", // Replace with actual Google Drive embed URL
+    thumbnailUrl: "/thumbnailss/gdrive3.jpg", // Add thumbnail image
+    tags: ["Custom", "Google Drive", "Reel"],
+  },
 ];
 
 // Hardcoded pricing data
@@ -67,37 +104,37 @@ const pricingData = [
   {
     id: 1,
     name: "Basic Reel",
-    price: "$50",
+    price: "₹500",
     description: "Perfect for quick social media updates.",
     category: "reel",
-    features: ["Up to 30 seconds", "Basic Color Correction", "Music Sync", "1 Revision"],
+    features: ["Up to 60 seconds", "Advanced Color Grade", "Sound Design & SFX", "2 Revisions"],
     isPopular: false,
   },
   {
     id: 2,
     name: "Pro Reel",
-    price: "$100",
+    price: "₹1000",
     description: "High-end editing for viral content.",
     category: "reel",
-    features: ["Up to 60 seconds", "Advanced Color Grade", "Sound Design & SFX", "Motion Graphics", "3 Revisions"],
+    features: ["Up to 90 seconds", "Advanced customized Color Grade", "Sound Design & SFX", "Motion Graphics", "5 Revisions"],
     isPopular: true,
   },
   {
     id: 3,
     name: "YouTube Standard",
-    price: "$200",
+    price: "₹1500",
     description: "Essential editing for YouTubers.",
     category: "full-length",
-    features: ["Up to 10 minutes", "Cut & Trim", "Basic Titles", "Background Music", "2 Revisions"],
+    features: ["Up to 15 minutes", "Basic Color Grade", "Sound Design & SFX", "Background Music", "2 Revisions"],
     isPopular: false,
   },
   {
     id: 4,
     name: "Cinematic Documentary",
-    price: "$500+",
+    price: "₹2000+",
     description: "Full production value for serious projects.",
     category: "full-length",
-    features: ["Up to 30 minutes", "Cinematic Color Grading", "Advanced Sound Design", "Custom Transitions", "Unlimited Revisions"],
+    features: ["Up to 30 minutes", "Cinematic Color Grading", "Advanced Sound Design", "Motion Graphics", "Unlimited Revisions"],
     isPopular: true,
   },
 ];
@@ -153,7 +190,8 @@ New Project Inquiry from Cinemora Studio Website
 
 Name: ${input.name}
 Email: ${input.email}
-Service Type: ${input.serviceType}
+Service: ${input.serviceType}
+${input.servicePlan ? `Service Plan: ${input.servicePlan}` : ""}
 Message:
 ${input.message}
 
@@ -164,7 +202,7 @@ This message was sent from the contact form on cinemora-studio.com
       // Send email to business email
       await transporter.sendMail({
         from: process.env.EMAIL_USER || 'your-email@gmail.com',
-        to: 'sudip460debnath@gmail.com',
+        to: 'cinemorastudio460@gmail.com',
         subject: `New Project Inquiry: ${input.serviceType} - ${input.name}`,
         text: emailContent
       });

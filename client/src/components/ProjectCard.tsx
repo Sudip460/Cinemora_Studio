@@ -9,6 +9,17 @@ interface ProjectCardProps {
   index: number;
 }
 
+const isInstagramUrl = (url: string) => url.includes('instagram.com');
+
+const isGoogleDriveUrl = (url: string) => url.includes('drive.google.com');
+
+const getInstagramReelId = (url: string) => {
+  // Extract reel ID from Instagram URL
+  // https://www.instagram.com/reel/DRevm00jqai/ -> DRevm00jqai
+  const match = url.match(/\/reel\/([^/?]+)/);
+  return match ? match[1] : null;
+};
+
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,10 +31,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: index * 0.1, duration: 0.5 }}
-          className="group relative cursor-pointer"
+          className="group relative cursor-pointer h-full flex flex-col"
           data-testid={`card-project-${project.id}`}
         >
-          <div className="aspect-[16/9] rounded-xl overflow-hidden relative bg-card border-2 border-foreground/10 group-hover:border-primary/50 transition-colors shadow-lg group-hover:shadow-xl">
+          <div className={`rounded-xl overflow-hidden relative bg-card border-2 border-foreground/10 group-hover:border-primary/50 transition-colors shadow-lg group-hover:shadow-xl ${project.category === 'reel' ? 'aspect-[9/16]' : 'aspect-[16/9]'}`}>
             <img
               src={project.thumbnailUrl}
               alt={project.title}
@@ -63,8 +74,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         </motion.div>
       </DialogTrigger>
 
-      <DialogContent className="max-w-4xl w-full p-0 bg-black/95 border-0">
-        <div className="relative">
+      <DialogContent className={`w-full p-0 bg-black border-0 ${project.category === 'reel' ? 'max-w-4xl max-h-[90vh]' : 'max-w-4xl'}`}>
+        <div className={`relative ${project.category === 'reel' ? 'flex gap-0 h-[90vh]' : ''}`}>
           <button
             onClick={() => setIsOpen(false)}
             className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white flex items-center justify-center transition-colors"
@@ -72,17 +83,43 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             <X size={20} />
           </button>
 
-          <div className="aspect-video w-full">
-            <iframe
-              src={project.videoUrl}
-              title={project.title}
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+          <div className={`flex items-center justify-center bg-black overflow-hidden ${project.category === 'reel' ? 'w-1/2 shrink-0' : 'w-full aspect-video'}`}>
+            {isInstagramUrl(project.videoUrl) ? (
+              <div className="w-full h-full overflow-hidden">
+                <iframe
+                  src={`https://www.instagram.com/reel/${getInstagramReelId(project.videoUrl)}/embed/`}
+                  className="w-full h-full scale-125 origin-top"
+                  frameBorder="0"
+                  scrolling="no"
+                  style={{
+                    background: '#000',
+                  }}
+                />
+              </div>
+            ) : isGoogleDriveUrl(project.videoUrl) ? (
+              <div className="w-full h-full">
+                <iframe
+                  src={project.videoUrl}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="autoplay"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <div className="w-full h-full">
+                <iframe
+                  src={project.videoUrl}
+                  title={project.title}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
           </div>
 
-          <div className="p-6 bg-background">
+          <div className={`${project.category === 'reel' ? 'w-1/2 bg-background p-6 overflow-y-auto max-h-[90vh]' : 'w-full bg-background p-6'}`}>
             <div className="flex items-center gap-2 mb-2">
               <span className="px-3 py-1 bg-foreground/10 text-xs font-mono rounded-full">
                 {project.category === 'reel' ? '⚡ REEL' : '🎬 FULL LENGTH'}
