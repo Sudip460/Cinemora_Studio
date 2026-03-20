@@ -25,7 +25,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-card border-t border-white/5 py-8 overflow-hidden">
+    <footer className="relative bg-card border-t border-foreground/10 py-8 overflow-hidden">
       {/* Animated Background Elements */}
       <motion.div
         className="absolute -top-40 -right-40 w-96 h-96 rounded-full opacity-10 dark:opacity-5 pointer-events-none"
@@ -71,7 +71,7 @@ export function Footer() {
           </motion.div>
           
           <motion.div variants={itemVariants}>
-            <h4 className="text-white font-display font-bold mb-6 flex items-center gap-2">
+            <h4 className="text-foreground font-display font-bold mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full"></span>
               NAVIGATION
             </h4>
@@ -124,7 +124,7 @@ export function Footer() {
           </motion.div>
           
           <motion.div variants={itemVariants}>
-            <h4 className="text-white font-display font-bold mb-6 flex items-center gap-2">
+            <h4 className="text-foreground font-display font-bold mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-gradient-to-b from-secondary to-primary rounded-full"></span>
               SERVICES
             </h4>
@@ -137,14 +137,14 @@ export function Footer() {
           </motion.div>
           
           <motion.div variants={itemVariants}>
-            <h4 className="text-white font-display font-bold mb-6 flex items-center gap-2">
+            <h4 className="text-foreground font-display font-bold mb-6 flex items-center gap-2">
               <span className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full"></span>
               CONNECT
             </h4>
             <div className="flex gap-4">
               <motion.a 
                 href="https://www.instagram.com/cinemora_studio_?igsh=MXdkbXJxZ3Z6a2k1bA==" 
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-muted-foreground"
+                className="w-10 h-10 rounded-full bg-foreground/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-muted-foreground"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -152,7 +152,7 @@ export function Footer() {
               </motion.a>
               <motion.a 
                 href="#" 
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-red-600 hover:text-white flex items-center justify-center transition-all text-muted-foreground"
+                className="w-10 h-10 rounded-full bg-foreground/5 hover:bg-red-600 hover:text-white flex items-center justify-center transition-all text-muted-foreground"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -160,7 +160,7 @@ export function Footer() {
               </motion.a>
               <motion.a 
                 href="https://mail.google.com/mail/u/0/#drafts?compose=DmwnWrRtsncVfNNBqQbwPvPlqSqbfgTSZBVplRlhVShdCPtWGQkLszpftnSpTgTFWVMvVmmPNtzL" 
-                className="w-10 h-10 rounded-full bg-white/5 hover:bg-secondary hover:text-black flex items-center justify-center transition-all text-muted-foreground"
+                className="w-10 h-10 rounded-full bg-foreground/5 hover:bg-secondary hover:text-black flex items-center justify-center transition-all text-muted-foreground"
                 whileHover={{ scale: 1.2, rotate: 10 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -171,7 +171,7 @@ export function Footer() {
         </motion.div>
         
         <motion.div 
-          className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground"
+          className="border-t border-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground"
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
