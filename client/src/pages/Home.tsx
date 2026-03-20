@@ -64,7 +64,9 @@ export default function Home() {
     const reels = projects.filter((project) => project.category === "reel");
     const fulls = projects.filter((project) => project.category === "full-length");
 
-    return distributeFeaturedProjects(reels, fulls, featuredWorkLayout);
+    return distributeFeaturedProjects(reels, fulls, featuredWorkLayout).map((column) =>
+      column.slice(0, 2)
+    );
   }, [projects, featuredWorkLayout]);
 
   const skeletonColumnCount =
