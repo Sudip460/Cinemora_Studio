@@ -6,8 +6,13 @@ import { Footer } from "@/components/Footer";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Timeline } from "@/components/Timeline";
 import { DynamicBackground } from "@/components/DynamicBackground";
+import {
+  distributeFeaturedProjects,
+  getFeaturedWorkLayout,
+  type FeaturedWorkLayout,
+} from "@/lib/project-layout";
 import { useProjects } from "@/hooks/use-projects";
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import circLogo from "@assets/Picsart_25-10-04_22-03-18-563_1766355441351.png";
 
 const FloatingParticle = ({ delay, duration }: { delay: number; duration: number }) => (
@@ -33,10 +38,41 @@ const FloatingParticle = ({ delay, duration }: { delay: number; duration: number
 
 export default function Home() {
   const { data: projects, isLoading } = useProjects();
-  const featuredProjects = projects?.slice(0, 3) || [];
   const scrollIndicatorRef = useRef(null);
   const { scrollY } = useScroll();
   const scrollOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const [featuredWorkLayout, setFeaturedWorkLayout] = useState<FeaturedWorkLayout>(() =>
+    typeof window === "undefined" ? "desktop" : getFeaturedWorkLayout(window.innerWidth)
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setFeaturedWorkLayout(getFeaturedWorkLayout(window.innerWidth));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const featuredWorkColumns = useMemo(() => {
+    if (!projects?.length) {
+      return [];
+    }
+
+    const reels = projects.filter((project) => project.category === "reel");
+    const fulls = projects.filter((project) => project.category === "full-length");
+
+    return distributeFeaturedProjects(reels, fulls, featuredWorkLayout);
+  }, [projects, featuredWorkLayout]);
+
+  const skeletonColumnCount =
+    featuredWorkLayout === "desktop" ? 3 : featuredWorkLayout === "tablet" ? 2 : 1;
+  const skeletonColumns = Array.from({ length: skeletonColumnCount }, (_, columnIndex) => ({
+    id: columnIndex,
+    items: Array.from({ length: 2 }, (_, itemIndex) => `${columnIndex}-${itemIndex}`),
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -278,32 +314,34 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          {/* Separate reels and full-length videos for responsive grid layout */}
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl" />
+            <div className={`featured-work-layout featured-work-layout--${skeletonColumnCount}`}>
+              {skeletonColumns.map((column) => (
+                <div key={column.id} className="featured-work-column">
+                  {column.items.map((itemId) => (
+                    <div
+                      key={itemId}
+                      className="featured-work-item aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl"
+                    />
+                  ))}
+                </div>
               ))}
             </div>
-          ) : projects && projects.length >= 6 ? (
-            (() => {
-              const reels = projects.filter(p => p.category === 'reel');
-              const fulls = projects.filter(p => p.category === 'full-length');
-              const allProjects = [
-                reels[0], fulls[0], reels[1],
-                fulls[1], reels[2], fulls[2]
-              ].filter(Boolean);
-
-              return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                  {allProjects.map((project, index) => (
-                    <div key={project.id} className="flex flex-col">
-                      <ProjectCard project={project} index={index} />
+          ) : featuredWorkColumns.length > 0 ? (
+            <div className={`featured-work-layout featured-work-layout--${featuredWorkColumns.length}`}>
+              {featuredWorkColumns.map((column, columnIndex) => (
+                <div key={`featured-column-${columnIndex}`} className="featured-work-column">
+                  {column.map((project, itemIndex) => (
+                    <div key={project.id} className="featured-work-item">
+                      <ProjectCard
+                        project={project}
+                        index={columnIndex + itemIndex}
+                      />
                     </div>
                   ))}
                 </div>
-              );
-            })()
+              ))}
+            </div>
           ) : null}
         </div>
       </section>

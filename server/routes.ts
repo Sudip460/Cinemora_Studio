@@ -56,8 +56,8 @@ const projectsData = [
     title: "Gym Motivation",
     description: "Intense workout montage with glitch effects.",
     category: "reel",
-    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_6", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000&auto=format&fit=crop",
+    videoUrl: "https://drive.google.com/file/d/10PRqIuIs2RsAUjj-zmg48pgW-IiHvjuX/preview", // Replace with actual YouTube embed URL
+    thumbnailUrl: "/thumbnailss/reel2.png",
     tags: ["Fitness", "Motivation", "Glitch"],
   },
   {

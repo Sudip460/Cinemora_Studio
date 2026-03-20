@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { useProjects } from "@/hooks/use-projects";
 import { ProjectCard } from "@/components/ProjectCard";
 import { DynamicBackground } from "@/components/DynamicBackground";
+import {
+  distributeFeaturedProjects,
+  getFeaturedWorkLayout,
+  type FeaturedWorkLayout,
+} from "@/lib/project-layout";
 import { motion } from "framer-motion";
 
 const tabs = [
@@ -14,9 +19,41 @@ const tabs = [
 
 export default function Work() {
   const [activeTab, setActiveTab] = useState<string>("all");
+  const [featuredWorkLayout, setFeaturedWorkLayout] = useState<FeaturedWorkLayout>(() =>
+    typeof window === "undefined" ? "desktop" : getFeaturedWorkLayout(window.innerWidth)
+  );
   const { data: projects, isLoading } = useProjects(
     activeTab === "all" ? undefined : (activeTab as "reel" | "full-length")
   );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setFeaturedWorkLayout(getFeaturedWorkLayout(window.innerWidth));
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const allWorkColumns = useMemo(() => {
+    if (activeTab !== "all" || !projects?.length) {
+      return [];
+    }
+
+    const reels = projects.filter((project) => project.category === "reel");
+    const fulls = projects.filter((project) => project.category === "full-length");
+
+    return distributeFeaturedProjects(reels, fulls, featuredWorkLayout);
+  }, [activeTab, projects, featuredWorkLayout]);
+
+  const skeletonColumnCount =
+    featuredWorkLayout === "desktop" ? 3 : featuredWorkLayout === "tablet" ? 2 : 1;
+  const skeletonColumns = Array.from({ length: skeletonColumnCount }, (_, columnIndex) => ({
+    id: columnIndex,
+    items: Array.from({ length: 2 }, (_, itemIndex) => `${columnIndex}-${itemIndex}`),
+  }));
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -72,30 +109,35 @@ export default function Work() {
           </div>
         </motion.div>
 
-        {/* Grid - Responsive Layout for ALL WORK */}
         {activeTab === "all" ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
+          <div className="relative z-10">
             {isLoading ? (
-              Array.from({ length: 6 }).map((_, i) => (
-                <div key={i} className="aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl" />
-              ))
-            ) : projects && projects.length >= 6 ? (
-              (() => {
-                const reels = projects.filter(p => p.category === 'reel');
-                const fulls = projects.filter(p => p.category === 'full-length');
-                const allProjects = [
-                  reels[0], fulls[0], reels[1],
-                  fulls[1], reels[2], fulls[2]
-                ].filter(Boolean);
-
-                return allProjects.map((project, index) => (
-                  <div key={project.id} className="flex flex-col">
-                    <ProjectCard project={project} index={index} />
+              <div className={`featured-work-layout featured-work-layout--${skeletonColumnCount}`}>
+                {skeletonColumns.map((column) => (
+                  <div key={column.id} className="featured-work-column">
+                    {column.items.map((itemId) => (
+                      <div
+                        key={itemId}
+                        className="featured-work-item aspect-video bg-card border-2 border-foreground/10 animate-pulse rounded-xl"
+                      />
+                    ))}
                   </div>
-                ));
-              })()
+                ))}
+              </div>
+            ) : allWorkColumns.length > 0 ? (
+              <div className={`featured-work-layout featured-work-layout--${allWorkColumns.length}`}>
+                {allWorkColumns.map((column, columnIndex) => (
+                  <div key={`work-column-${columnIndex}`} className="featured-work-column">
+                    {column.map((project, itemIndex) => (
+                      <div key={project.id} className="featured-work-item">
+                        <ProjectCard project={project} index={columnIndex + itemIndex} />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
             ) : (
-              <div className="col-span-full py-40 text-center border-2 border-dashed border-foreground/20 rounded-2xl bg-card/50 backdrop-blur">
+              <div className="py-40 text-center border-2 border-dashed border-foreground/20 rounded-2xl bg-card/50 backdrop-blur">
                 <p className="text-2xl font-serif font-black text-muted-foreground">No projects yet</p>
                 <p className="text-muted-foreground mt-2">Check back soon for our latest edits</p>
               </div>
