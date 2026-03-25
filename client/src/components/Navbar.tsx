@@ -29,9 +29,9 @@ export function Navbar() {
         scrolled ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 py-3" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between gap-3 px-4 md:px-6">
         <Link href="/">
-          <div className="flex items-center gap-3 cursor-pointer group">
+          <div className="group flex min-w-0 items-center gap-3 cursor-pointer">
             <div className="relative overflow-hidden rounded-sm border border-foreground/20 group-hover:border-primary/50 transition-colors">
               <img 
                 src={rectLogo} 
@@ -40,7 +40,7 @@ export function Navbar() {
               />
               <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <span className="font-display font-bold text-lg tracking-wider text-foreground hidden sm:block">
+            <span className="hidden truncate font-display text-lg font-bold tracking-wider text-foreground sm:block">
               CINEMORA <span className="text-primary">STUDIO</span>
             </span>
           </div>
@@ -70,10 +70,10 @@ export function Navbar() {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button 
-            className="text-foreground"
+            className="rounded-md p-1 text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
             data-testid="button-menu-toggle"
           >
@@ -91,7 +91,7 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-background border-b border-foreground/10 overflow-hidden"
           >
-            <div className="flex flex-col p-4 gap-4">
+            <div className="flex flex-col gap-4 p-4">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
                   <span 
@@ -104,6 +104,14 @@ export function Navbar() {
                   </span>
                 </Link>
               ))}
+              <Link href="/contact">
+                <button
+                  className="mt-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold tracking-wider text-white"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  GET A QUOTE
+                </button>
+              </Link>
             </div>
           </motion.div>
         )}

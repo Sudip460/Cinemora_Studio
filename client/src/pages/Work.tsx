@@ -59,14 +59,14 @@ export default function Work() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
       
-      <div className="relative pt-32 pb-20 container mx-auto px-4 md:px-6">
+      <div className="container relative mx-auto px-4 pb-16 pt-28 md:px-6 sm:pb-20 sm:pt-32">
         <DynamicBackground />
         
         {/* Header */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-20 relative z-10"
+          className="relative z-10 mb-12 text-center sm:mb-16 lg:mb-20"
         >
           <motion.span 
             className="text-accent font-mono text-sm tracking-widest uppercase block mb-6 font-bold"
@@ -75,7 +75,7 @@ export default function Work() {
           >
             ✦ Portfolio
           </motion.span>
-          <h1 className="text-7xl md:text-8xl font-serif font-black text-foreground mb-8 glow-text">Our Work</h1>
+          <h1 className="mb-6 text-5xl font-serif font-black text-foreground glow-text sm:text-6xl md:text-7xl lg:text-8xl">Our Work</h1>
           <p className="text-muted-foreground max-w-3xl mx-auto text-lg relative z-10 leading-relaxed">
             A showcase of professional video editing across reels, shorts, documentaries, and commercial projects. Each edit tells its own story.
           </p>
@@ -86,16 +86,16 @@ export default function Work() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="flex justify-center mb-20 overflow-x-auto relative z-10"
+            className="relative z-10 mb-12 flex justify-center sm:mb-16 lg:mb-20"
         >
-          <div className="flex gap-4 p-2 bg-gradient-to-r from-card via-background to-card rounded-2xl border border-foreground/10 backdrop-blur">
+          <div className="flex w-full max-w-3xl flex-wrap justify-center gap-3 rounded-2xl border border-foreground/10 bg-gradient-to-r from-card via-background to-card p-2 backdrop-blur">
             {tabs.map((tab) => (
               <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-7 py-3 text-sm font-black rounded-xl transition-all flex items-center gap-2 whitespace-nowrap tracking-wide ${
+                className={`flex min-w-[calc(50%-0.375rem)] items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 py-3 text-xs font-black tracking-wide transition-all sm:min-w-0 sm:px-6 sm:text-sm ${
                   activeTab === tab.id
                     ? "bg-gradient-to-r from-primary to-orange-600 text-white shadow-lg dark:shadow-[0_0_30px_rgba(255,127,0,0.4)]"
                     : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
@@ -144,7 +144,7 @@ export default function Work() {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
             {isLoading ? (
               [1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="aspect-video bg-gradient-to-br from-card to-card/50 animate-pulse rounded-xl border-2 border-foreground/10 relative overflow-hidden">

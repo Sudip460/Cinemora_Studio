@@ -70,7 +70,7 @@ export default function Services() {
       <Navbar />
       
       {/* Header */}
-      <section className="relative pt-40 pb-24 container mx-auto px-4 md:px-6 text-center overflow-hidden">
+      <section className="container relative mx-auto overflow-hidden px-4 pb-20 pt-28 text-center md:px-6 sm:pb-24 sm:pt-40">
         <DynamicBackground />
         
         <motion.div
@@ -87,7 +87,7 @@ export default function Services() {
             ✦ Pricing
           </motion.span>
           <motion.h1 
-            className="text-7xl md:text-8xl font-serif font-black text-foreground mb-8 glow-text"
+            className="mb-6 text-5xl font-serif font-black text-foreground glow-text sm:text-6xl md:text-7xl lg:text-8xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1 }}
@@ -95,7 +95,7 @@ export default function Services() {
             Professional Rates
           </motion.h1>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed"
+            className="mx-auto max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -106,7 +106,7 @@ export default function Services() {
       </section>
 
       {/* Reels Section */}
-      <section className="relative py-32 border-y border-foreground/10 bg-gradient-to-b from-card/30 to-background overflow-hidden">
+      <section className="relative overflow-hidden border-y border-foreground/10 bg-gradient-to-b from-card/30 to-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -115,7 +115,7 @@ export default function Services() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-6 mb-16"
+            className="mb-12 flex flex-col items-start gap-4 sm:mb-16 sm:flex-row sm:items-center sm:gap-6"
           >
             <motion.div 
               className="p-5 bg-gradient-to-br from-primary/30 to-primary/10 rounded-2xl text-primary"
@@ -127,7 +127,7 @@ export default function Services() {
             </motion.div>
             <div className="text-left">
               <motion.h2 
-                className="text-5xl font-serif font-black text-foreground"
+                className="text-4xl font-serif font-black text-foreground sm:text-5xl"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -136,7 +136,7 @@ export default function Services() {
                 Reels & Shorts
               </motion.h2>
               <motion.p 
-                className="text-muted-foreground mt-2 text-lg"
+                className="mt-2 text-base text-muted-foreground sm:text-lg"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -162,7 +162,7 @@ export default function Services() {
       </section>
 
       {/* Full Length Section */}
-      <section className="relative py-32 bg-background overflow-hidden">
+      <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -171,7 +171,7 @@ export default function Services() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-6 mb-16"
+            className="mb-12 flex flex-col items-start gap-4 sm:mb-16 sm:flex-row sm:items-center sm:gap-6"
           >
             <motion.div 
               className="p-5 bg-gradient-to-br from-secondary/30 to-secondary/10 rounded-2xl text-secondary"
@@ -183,7 +183,7 @@ export default function Services() {
             </motion.div>
             <div className="text-left">
               <motion.h2 
-                className="text-5xl font-serif font-black text-foreground"
+                className="text-4xl font-serif font-black text-foreground sm:text-5xl"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -192,7 +192,7 @@ export default function Services() {
                 Full Length
               </motion.h2>
               <motion.p 
-                className="text-muted-foreground mt-2 text-lg"
+                className="mt-2 text-base text-muted-foreground sm:text-lg"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -218,7 +218,7 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="relative py-32 bg-gradient-to-r from-card via-background to-card overflow-hidden">
+      <section className="relative overflow-hidden bg-gradient-to-r from-card via-background to-card py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
@@ -229,7 +229,7 @@ export default function Services() {
             transition={{ duration: 0.6 }}
           >
             <motion.h2 
-              className="text-6xl md:text-7xl font-serif font-black text-foreground mb-8 glow-text"
+              className="mb-6 text-4xl font-serif font-black text-foreground glow-text sm:text-5xl md:text-6xl lg:text-7xl"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -238,7 +238,7 @@ export default function Services() {
               Need Something Custom?
             </motion.h2>
             <motion.p 
-              className="text-muted-foreground text-xl max-w-2xl mx-auto mb-12 leading-relaxed"
+              className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:mb-12 sm:text-xl"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
@@ -256,7 +256,7 @@ export default function Services() {
                 href="/contact"
                 whileHover={{ scale: 1.08, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-block px-12 py-5 bg-gradient-to-r from-primary to-orange-500 dark:to-orange-400 text-white font-black text-lg rounded-xl hover:shadow-xl transition-all tracking-wider relative overflow-hidden"
+                className="relative inline-block overflow-hidden rounded-xl bg-gradient-to-r from-primary to-orange-500 px-8 py-4 text-base font-black tracking-wider text-white transition-all hover:shadow-xl dark:to-orange-400 sm:px-12 sm:py-5 sm:text-lg"
               >
                 <motion.div 
                   className="absolute inset-0 bg-white/20"
@@ -284,7 +284,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       viewport={{ once: true }}
       transition={{ delay: delay * 0.15, duration: 0.5 }}
       whileHover={{ y: -16, transition: { duration: 0.3 } }}
-      className={`relative p-10 rounded-2xl border-2 flex flex-col h-full transition-all overflow-hidden group ${
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border-2 p-6 transition-all sm:p-8 lg:p-10 ${
         pkg.isPopular 
           ? "bg-gradient-to-r from-primary/25 dark:from-primary/35 to-transparent border-primary shadow-xl dark:shadow-[0_0_40px_rgba(255,127,0,0.3)]" 
           : "bg-gradient-to-r from-card/90 to-background border-foreground/10 hover:border-primary/40"
@@ -304,14 +304,14 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           whileHover={{ scale: 1.05 }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-primary to-orange-600 text-white text-xs font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg"
+          className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-primary to-orange-600 px-4 py-2 text-[10px] font-black uppercase tracking-wider text-white shadow-lg sm:px-6 sm:text-xs"
         >
           ⭐ MOST POPULAR
         </motion.div>
       )}
 
       <motion.h3 
-        className="text-3xl font-serif font-black text-foreground mb-4 relative z-10"
+        className="relative z-10 mb-4 text-2xl font-serif font-black text-foreground sm:text-3xl"
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
@@ -328,7 +328,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
         transition={{ delay: delay * 0.15 + 0.15 }}
       >
         <motion.span 
-          className="text-6xl font-serif font-black text-gradient"
+          className="text-5xl font-serif font-black text-gradient sm:text-6xl"
           whileInView={{ scale: [0.95, 1.05, 1] }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: delay * 0.15 + 0.2 }}
@@ -347,7 +347,7 @@ function PricingCard({ pkg, delay }: { pkg: PricingPackage; delay: number }) {
       </motion.div>
 
       <motion.p 
-        className="text-muted-foreground mb-10 leading-relaxed flex-grow text-lg relative z-10"
+        className="relative z-10 mb-8 flex-grow text-base leading-relaxed text-muted-foreground sm:mb-10 sm:text-lg"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}

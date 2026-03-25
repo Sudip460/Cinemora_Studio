@@ -81,17 +81,17 @@ export default function Home() {
       <Navbar />
 
       {/* HERO - Enhanced with Dynamic Background */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-14 pt-24 sm:px-6 sm:pt-28">
         <DynamicBackground />
 
         {/* Content */}
-        <div className="container relative z-20 px-4 md:px-6 text-center">
+        <div className="container relative z-20 text-center">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="mb-12 flex justify-center"
+            className="mb-8 flex justify-center sm:mb-12"
           >
             <motion.div
               animate={{ y: [0, -15, 0], rotateZ: [-1, 1, -1] }}
@@ -101,7 +101,7 @@ export default function Home() {
               <img 
                 src={circLogo} 
                 alt="Logo" 
-                className="w-32 h-32 md:w-48 md:h-48 drop-shadow-2xl"
+                className="h-24 w-24 drop-shadow-2xl sm:h-32 sm:w-32 md:h-48 md:w-48"
               />
               <div className="absolute inset-0 rounded-full border-4 border-primary/20 animate-pulse" />
             </motion.div>
@@ -112,13 +112,13 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-6 sm:mb-8"
           >
             <motion.h1 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.7 }}
-              className="text-6xl md:text-9xl font-serif font-black text-foreground mb-4 tracking-tighter leading-none glow-text"
+              className="mb-3 text-[clamp(3.5rem,16vw,8rem)] font-serif font-black leading-[0.92] tracking-[-0.06em] text-foreground glow-text sm:mb-4 md:text-[clamp(5.5rem,13vw,9rem)]"
             >
               CINEMORA
             </motion.h1>
@@ -128,7 +128,7 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="inline-block"
             >
-              <span className="text-6xl md:text-9xl font-serif font-black text-gradient-bold tracking-tighter">
+              <span className="text-[clamp(3.5rem,16vw,8rem)] font-serif font-black tracking-[-0.06em] text-gradient-bold md:text-[clamp(5.5rem,13vw,9rem)]">
                 STUDIO
               </span>
             </motion.div>
@@ -139,7 +139,7 @@ export default function Home() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="h-1 w-32 bg-gradient-to-r from-primary via-accent to-secondary mx-auto mb-8 rounded-full"
+            className="mx-auto mb-6 h-1 w-24 rounded-full bg-gradient-to-r from-primary via-accent to-secondary sm:mb-8 sm:w-32"
           />
           
           {/* Subheading */}
@@ -148,7 +148,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <p className="text-xl md:text-3xl text-muted-foreground max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+            <p className="mx-auto mb-10 max-w-4xl text-balance text-lg font-light leading-relaxed text-muted-foreground sm:text-xl md:mb-12 md:text-3xl">
               Where <span className="text-gradient font-semibold">raw footage</span> becomes <span className="text-primary font-bold">cinematic poetry</span>. 
               <br className="hidden md:block" />
               <span className="text-accent font-semibold">Professional video editing</span> for creators who demand excellence.
@@ -160,13 +160,13 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+            className="flex flex-col items-stretch justify-center gap-4 sm:flex-row sm:items-center sm:gap-6"
           >
             <Link href="/work">
               <motion.button 
                 whileHover={{ scale: 1.08, boxShadow: "0 0 30px hsl(var(--primary) / 0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 text-white font-black tracking-wider rounded-lg flex items-center gap-3 transition-all shadow-xl text-lg"
+                className="flex w-full items-center justify-center gap-3 rounded-lg bg-gradient-to-r from-primary to-orange-600 px-8 py-4 text-base font-black tracking-wider text-white shadow-xl transition-all dark:to-orange-500 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
               >
                 <PlayCircle size={24} />
                 EXPLORE WORK
@@ -176,7 +176,7 @@ export default function Home() {
               <motion.button 
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-5 bg-accent/20 dark:bg-accent/30 border-2 border-accent text-foreground font-black tracking-wider rounded-lg hover:bg-accent/30 dark:hover:bg-accent/40 transition-all text-lg"
+                className="w-full rounded-lg border-2 border-accent bg-accent/20 px-8 py-4 text-base font-black tracking-wider text-foreground transition-all hover:bg-accent/30 dark:bg-accent/30 dark:hover:bg-accent/40 sm:w-auto sm:px-10 sm:py-5 sm:text-lg"
               >
                 START PROJECT
               </motion.button>
@@ -191,7 +191,7 @@ export default function Home() {
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2.5, repeat: Infinity }}
         style={{ opacity: scrollOpacity }}
-        className="fixed bottom-12 left-1/2 z-50"
+        className="fixed bottom-8 left-1/2 z-50 hidden sm:block"
       >
         <div className="flex flex-col items-center gap-2 -translate-x-1/2">
           <span className="text-xs uppercase tracking-widest text-primary font-semibold">Scroll to explore</span>
@@ -200,11 +200,11 @@ export default function Home() {
       </motion.div>
 
       {/* About */}
-      <section className="relative py-32 bg-gradient-to-b from-background via-card/30 to-background border-y border-foreground/10 overflow-hidden">
+      <section className="relative overflow-hidden border-y border-foreground/10 bg-gradient-to-b from-background via-card/30 to-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -219,7 +219,7 @@ export default function Home() {
                 ✦ About Us
               </motion.span>
               
-              <h2 className="text-5xl md:text-6xl font-serif font-black mb-8 text-foreground leading-tight">
+              <h2 className="mb-6 text-4xl font-serif font-black leading-tight text-foreground sm:text-5xl md:mb-8 md:text-6xl">
                 We Edit. <br/>
                 <span className="text-gradient">You Impact.</span>
               </h2>
@@ -228,7 +228,7 @@ export default function Home() {
                 At Cinemora Studio, every frame is an opportunity for creative expression. We specialize in transforming raw footage into compelling visual narratives that captivate audiences and drive engagement.
               </p>
               
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                 <motion.div 
                   whileHover={{ y: -8 }}
                   className="group p-6 bg-gradient-to-br from-primary/20 dark:from-primary/30 to-primary/5 dark:to-primary/10 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all"
@@ -247,38 +247,38 @@ export default function Home() {
             </motion.div>
             
             <motion.div 
-              className="grid grid-cols-2 gap-6 perspective"
+              className="mx-auto grid max-w-xl grid-cols-2 gap-4 perspective sm:gap-6 lg:mx-0"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <motion.div className="space-y-6 translate-y-8">
+              <motion.div className="space-y-4 sm:space-y-6 lg:translate-y-8">
                 <motion.div
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden cine-border shadow-2xl group"
                 >
-                  <img src="/thumbnailss/pexels-ron-lach-8100065.jpg" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/poster1.png" alt="Editing" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden border-4 border-accent/40 shadow-2xl group"
                 >
-                  <img src="/thumbnailss/Dream.png" alt="Color Grade" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/poster3.png" alt="Color Grade" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
               </motion.div>
-              <motion.div className="space-y-6 mt-8">
+              <motion.div className="mt-4 space-y-4 sm:mt-8 sm:space-y-6">
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: -2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden border-4 border-secondary/40 shadow-2xl group"
                 >
-                  <img src="/thumbnailss/ChatGPT Image Jan 11, 2026, 12_10_01 AM.png" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/poster2.png" alt="Timeline" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05, rotateZ: 2 }}
                   className="aspect-[3/4] rounded-xl overflow-hidden cine-border shadow-2xl group"
                 >
-                  <img src="/thumbnailss/Screenshot 2026-01-10 002657.png" alt="Effects" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                  <img src="/thumbnailss/poster4.png" alt="Effects" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </motion.div>
               </motion.div>
             </motion.div>
@@ -287,14 +287,14 @@ export default function Home() {
       </section>
 
       {/* Featured Work - Grid with Reel/Full-Length Separation */}
-      <section className="relative py-32 bg-background overflow-hidden">
+      <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="flex justify-between items-end mb-20"
+            className="mb-12 flex flex-col items-start justify-between gap-6 sm:mb-16 md:flex-row md:items-end lg:mb-20"
           >
             <div>
               <motion.span 
@@ -304,7 +304,15 @@ export default function Home() {
               >
                 ✦ Latest Cuts
               </motion.span>
-              <h2 className="text-6xl md:text-7xl font-serif font-black text-foreground">Featured Work</h2>
+              <h2 className="text-4xl font-serif font-black text-foreground sm:text-5xl md:text-6xl lg:text-7xl">Featured Work</h2>
+              <Link href="/work">
+                <motion.span
+                  className="mt-4 inline-flex cursor-pointer items-center gap-2 text-sm font-black uppercase tracking-wider text-primary md:hidden"
+                  whileHover={{ x: 4 }}
+                >
+                  VIEW ALL <ArrowRight size={16} />
+                </motion.span>
+              </Link>
             </div>
             <Link href="/work">
               <motion.span 
@@ -330,26 +338,40 @@ export default function Home() {
               ))}
             </div>
           ) : featuredWorkColumns.length > 0 ? (
-            <div className={`featured-work-layout featured-work-layout--${featuredWorkColumns.length}`}>
-              {featuredWorkColumns.map((column, columnIndex) => (
-                <div key={`featured-column-${columnIndex}`} className="featured-work-column">
-                  {column.map((project, itemIndex) => (
-                    <div key={project.id} className="featured-work-item">
-                      <ProjectCard
-                        project={project}
-                        index={columnIndex + itemIndex}
-                      />
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
+            <>
+              <div className={`featured-work-layout featured-work-layout--${featuredWorkColumns.length}`}>
+                {featuredWorkColumns.map((column, columnIndex) => (
+                  <div key={`featured-column-${columnIndex}`} className="featured-work-column">
+                    {column.map((project, itemIndex) => (
+                      <div key={project.id} className="featured-work-item">
+                        <ProjectCard
+                          project={project}
+                          index={columnIndex + itemIndex}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 flex justify-center md:hidden">
+                <Link href="/work">
+                  <motion.button
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex w-full max-w-sm items-center justify-center gap-3 rounded-lg border-2 border-primary/40 bg-primary/10 px-6 py-4 text-sm font-black uppercase tracking-[0.2em] text-foreground transition-all hover:border-primary hover:bg-primary/15"
+                  >
+                    EXPLORE ALL <ArrowRight size={18} />
+                  </motion.button>
+                </Link>
+              </div>
+            </>
           ) : null}
         </div>
       </section>
 
       {/* Process */}
-      <section className="relative py-32 bg-gradient-to-r from-card via-background to-card border-y border-foreground/10 overflow-hidden">
+      <section className="relative overflow-hidden border-y border-foreground/10 bg-gradient-to-r from-card via-background to-card py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -357,7 +379,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto mb-20"
+            className="mx-auto mb-14 max-w-3xl text-center sm:mb-16 lg:mb-20"
           >
             <motion.span 
               className="text-primary font-mono text-sm tracking-widest uppercase block mb-4 font-bold"
@@ -366,7 +388,7 @@ export default function Home() {
             >
               ✦ The Workflow
             </motion.span>
-            <h2 className="text-6xl md:text-7xl font-serif font-black text-foreground mb-6">From Raw to Ready</h2>
+            <h2 className="mb-6 text-4xl font-serif font-black text-foreground sm:text-5xl md:text-6xl lg:text-7xl">From Raw to Ready</h2>
             <p className="text-muted-foreground text-lg leading-relaxed">Our streamlined editing process transforms your footage into polished, professional content that stands out.</p>
           </motion.div>
           <Timeline />
@@ -374,7 +396,7 @@ export default function Home() {
       </section>
       
       {/* Services */}
-      <section className="relative py-32 bg-background overflow-hidden">
+      <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -382,7 +404,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16"
+            className="mb-12 sm:mb-14 lg:mb-16"
           >
             <motion.span 
               className="text-accent font-mono text-sm tracking-widest uppercase block mb-4 font-bold"
@@ -391,17 +413,17 @@ export default function Home() {
             >
               ✦ Services
             </motion.span>
-            <h2 className="text-6xl md:text-7xl font-serif font-black text-foreground">What We Do</h2>
+            <h2 className="text-4xl font-serif font-black text-foreground sm:text-5xl md:text-6xl lg:text-7xl">What We Do</h2>
           </motion.div>
 
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
              <motion.div 
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ delay: 0 }}
                whileHover={{ y: -12 }}
-               className="group p-8 rounded-2xl artistic-card bg-gradient-to-br from-primary/15 dark:from-primary/25 to-primary/5 dark:to-primary/10 border-2 border-primary/30 hover:border-primary/70 hover:shadow-xl transition-all duration-300"
+               className="group artistic-card rounded-2xl border-2 border-primary/30 bg-gradient-to-br from-primary/15 to-primary/5 p-6 transition-all duration-300 hover:border-primary/70 hover:shadow-xl dark:from-primary/25 dark:to-primary/10 sm:p-8"
              >
                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/30 to-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all text-3xl">
                  ⚡
@@ -417,7 +439,7 @@ export default function Home() {
                viewport={{ once: true }}
                transition={{ delay: 0.1 }}
                whileHover={{ y: -12 }}
-               className="group p-8 rounded-2xl artistic-card bg-gradient-to-br from-secondary/15 dark:from-secondary/25 to-secondary/5 dark:to-secondary/10 border-2 border-secondary/30 hover:border-secondary/70 hover:shadow-xl transition-all duration-300"
+               className="group artistic-card rounded-2xl border-2 border-secondary/30 bg-gradient-to-br from-secondary/15 to-secondary/5 p-6 transition-all duration-300 hover:border-secondary/70 hover:shadow-xl dark:from-secondary/25 dark:to-secondary/10 sm:p-8"
              >
                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-secondary/30 to-secondary/10 flex items-center justify-center text-secondary mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all text-3xl">
                  🎬
@@ -433,7 +455,7 @@ export default function Home() {
                viewport={{ once: true }}
                transition={{ delay: 0.2 }}
                whileHover={{ y: -12 }}
-               className="group p-8 rounded-2xl artistic-card bg-gradient-to-br from-accent/15 dark:from-accent/25 to-accent/5 dark:to-accent/10 border-2 border-accent/30 hover:border-accent/70 hover:shadow-xl transition-all duration-300"
+               className="group artistic-card rounded-2xl border-2 border-accent/30 bg-gradient-to-br from-accent/15 to-accent/5 p-6 transition-all duration-300 hover:border-accent/70 hover:shadow-xl dark:from-accent/25 dark:to-accent/10 sm:p-8"
              >
                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-accent/30 to-accent/10 flex items-center justify-center text-accent mb-6 group-hover:scale-125 group-hover:rotate-12 transition-all text-3xl">
                  ✨
@@ -447,15 +469,15 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-40 overflow-hidden">
+      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
         <DynamicBackground />
         
-        <div className="container relative z-10 text-center px-4">
+        <div className="container relative z-10 mx-auto px-4 text-center">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-6xl md:text-8xl font-serif font-black text-foreground mb-8 glow-text leading-tight"
+            className="mb-6 text-4xl font-serif font-black leading-tight text-foreground glow-text sm:text-5xl md:mb-8 md:text-7xl lg:text-8xl"
           >
             Ready to Create <span className="text-gradient">Magic?</span>
           </motion.h2>
@@ -464,7 +486,7 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed font-medium"
+            className="mx-auto mb-10 max-w-3xl text-lg font-medium leading-relaxed text-muted-foreground sm:text-xl md:mb-12 md:text-2xl"
           >
             Let's bring your creative vision to life. We work with a limited number of clients monthly to ensure every project receives our full creative attention.
           </motion.p>
@@ -478,7 +500,7 @@ export default function Home() {
               <motion.button 
                 whileHover={{ scale: 1.1, boxShadow: "0 0 40px hsl(var(--primary) / 0.6)" }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-6 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 text-white font-black text-xl rounded-lg hover:shadow-2xl transition-all tracking-wider flex items-center gap-3 mx-auto glow-primary"
+                className="glow-primary mx-auto flex w-full max-w-sm items-center justify-center gap-3 rounded-lg bg-gradient-to-r from-primary to-orange-600 px-8 py-4 text-base font-black tracking-wider text-white transition-all hover:shadow-2xl dark:to-orange-500 sm:px-12 sm:py-6 sm:text-xl"
               >
                 START YOUR PROJECT <ArrowRight size={24} />
               </motion.button>

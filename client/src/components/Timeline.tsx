@@ -21,7 +21,7 @@ export function Timeline() {
   const lineWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div ref={containerRef} className="relative py-20 overflow-hidden" style={{ position: 'relative' }}>
+    <div ref={containerRef} className="relative overflow-hidden py-12 sm:py-16 lg:py-20" style={{ position: 'relative' }}>
       {/* Horizontal Line Background */}
       <div className="absolute top-1/2 left-0 w-full h-0.5 bg-primary/20 -translate-y-1/2 hidden md:block" />
       
@@ -31,7 +31,7 @@ export function Timeline() {
         className="absolute top-1/2 left-0 h-0.5 bg-gradient-to-r from-primary via-primary to-accent -translate-y-1/2 hidden md:block transition-all"
       />
       
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 relative z-10">
+      <div className="relative z-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-0">
         {steps.map((step, i) => (
           <motion.div
             key={i}
@@ -39,9 +39,9 @@ export function Timeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.15 }}
-            className="flex flex-col items-center text-center group"
+            className="group flex flex-col items-center text-center"
           >
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-b from-primary/15 to-primary/5 dark:from-primary/20 dark:to-primary/10 border-2 border-primary/40 dark:border-primary/60 flex items-center justify-center mb-6 relative group-hover:border-primary/70 dark:group-hover:border-primary/80 transition-colors">
+            <div className="relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-primary/40 bg-gradient-to-b from-primary/15 to-primary/5 transition-colors group-hover:border-primary/70 dark:border-primary/60 dark:from-primary/20 dark:to-primary/10 dark:group-hover:border-primary/80 sm:mb-6">
               <step.icon className="text-muted-foreground group-hover:text-primary transition-colors w-7 h-7" />
               
               {/* Glow Effect */}

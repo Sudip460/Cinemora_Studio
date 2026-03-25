@@ -116,10 +116,10 @@ export default function Contact() {
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
 
-      <div className="relative pt-32 pb-20 container mx-auto px-4 md:px-6">
+      <div className="container relative mx-auto px-4 pb-16 pt-28 md:px-6 sm:pb-20 sm:pt-32">
         <DynamicBackground />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start relative z-10">
+        <div className="relative z-10 grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-20">
           
           {/* Left Column: Info */}
           <motion.div
@@ -135,17 +135,17 @@ export default function Contact() {
               ✦ Get in Touch
             </motion.span>
             
-            <h1 className="text-6xl md:text-7xl font-serif font-black text-foreground mb-8 leading-tight">
+            <h1 className="mb-6 text-4xl font-serif font-black leading-tight text-foreground sm:text-5xl md:mb-8 md:text-6xl lg:text-7xl">
               Let's Create <br/>
               <span className="text-gradient">Something Epic.</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-14 leading-relaxed font-medium">
+            <p className="mb-10 text-lg font-medium leading-relaxed text-muted-foreground sm:mb-14 sm:text-xl">
               Ready to elevate your content? Tell us about your project, vision, and timeline. We typically respond within 24 hours.
             </p>
 
-            <div className="space-y-10">
+            <div className="space-y-8 sm:space-y-10">
               <motion.div 
-                className="group flex items-start gap-5"
+                className="group flex items-start gap-4 sm:gap-5"
                 whileHover={{ x: 8 }}
                 transition={{ duration: 0.3 }}
               >
@@ -153,13 +153,13 @@ export default function Contact() {
                   <Instagram size={28} />
                 </div>
                 <div>
-                  <h3 className="text-foreground font-black text-2xl mb-2">Instagram</h3>
-                  <p className="text-muted-foreground text-lg font-medium">@cinemora_studio_</p>
+                  <h3 className="mb-2 text-xl font-black text-foreground sm:text-2xl">Instagram</h3>
+                  <p className="break-all text-base font-medium text-muted-foreground sm:text-lg">@cinemora_studio_</p>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="group flex items-start gap-5"
+                className="group flex items-start gap-4 sm:gap-5"
                 whileHover={{ x: 8 }}
                 transition={{ duration: 0.3 }}
               >
@@ -167,13 +167,13 @@ export default function Contact() {
                   <Mail size={28} />
                 </div>
                 <div>
-                  <h3 className="text-foreground font-black text-2xl mb-2">Email</h3>
-                      <p className="text-muted-foreground text-lg font-medium">cinemorastudio460@gmail.com</p>
+                  <h3 className="mb-2 text-xl font-black text-foreground sm:text-2xl">Email</h3>
+                  <p className="break-all text-base font-medium text-muted-foreground sm:text-lg">cinemorastudio460@gmail.com</p>
                 </div>
               </motion.div>
               
               <motion.div 
-                className="group flex items-start gap-5"
+                className="group flex items-start gap-4 sm:gap-5"
                 whileHover={{ x: 8 }}
                 transition={{ duration: 0.3 }}
               >
@@ -181,8 +181,8 @@ export default function Contact() {
                   <MapPin size={28} />
                 </div>
                 <div>
-                  <h3 className="text-foreground font-black text-2xl mb-2">Location</h3>
-                  <p className="text-muted-foreground text-lg font-medium">Bengaluru, India<br/>(Working Globally Remote)</p>
+                  <h3 className="mb-2 text-xl font-black text-foreground sm:text-2xl">Location</h3>
+                  <p className="text-base font-medium text-muted-foreground sm:text-lg">Bengaluru, India<br/>(Working Globally Remote)</p>
                 </div>
               </motion.div>
             </div>
@@ -193,9 +193,9 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="artistic-card bg-gradient-to-br from-card via-card/90 to-background border-2 border-foreground/10 p-10 md:p-12 shadow-2xl"
+            className="artistic-card border-2 border-foreground/10 bg-gradient-to-br from-card via-card/90 to-background p-6 shadow-2xl sm:p-8 md:p-10 lg:p-12"
           >
-            <h2 className="text-3xl font-serif font-black text-foreground mb-10">Project Inquiry</h2>
+            <h2 className="mb-8 text-2xl font-serif font-black text-foreground sm:mb-10 sm:text-3xl">Project Inquiry</h2>
             
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

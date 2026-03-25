@@ -46,13 +46,13 @@ export function Footer() {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12"
+          className="mb-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
-          <motion.div variants={itemVariants} className="md:col-span-1">
+          <motion.div variants={itemVariants} className="max-w-sm md:col-span-1">
             <div className="flex items-center gap-3 mb-6">
               <motion.div
                 whileHover={{ scale: 1.1, rotate: 10 }}
@@ -141,7 +141,7 @@ export function Footer() {
               <span className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full"></span>
               CONNECT
             </h4>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <motion.a 
                 href="https://www.instagram.com/cinemora_studio_?igsh=MXdkbXJxZ3Z6a2k1bA==" 
                 className="w-10 h-10 rounded-full bg-foreground/5 hover:bg-primary hover:text-white flex items-center justify-center transition-all text-muted-foreground"
@@ -171,14 +171,14 @@ export function Footer() {
         </motion.div>
         
         <motion.div 
-          className="border-t border-foreground/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-muted-foreground"
+          className="flex flex-col items-center justify-between gap-4 border-t border-foreground/10 pt-8 text-center text-xs text-muted-foreground md:flex-row md:text-left"
           variants={itemVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
           <p>© {new Date().getFullYear()} Cinemora Studio. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
+          <div className="flex flex-wrap justify-center gap-6 md:justify-end">
             <motion.span 
               className="hover:text-primary cursor-pointer transition-colors"
               whileHover={{ scale: 1.05 }}

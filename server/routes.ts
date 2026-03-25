@@ -8,12 +8,12 @@ import nodemailer from "nodemailer";
 const projectsData = [
   {
     id: 1,
-    title: "Neon City Drift",
-    description: "High-energy automotive cinematic reel featuring underground racing scenes.",
+    title: "Lumewo Bold Fashion",
+    description: "Dynamic fashion reel showcasing bold styles and vibrant energy.",
     category: "reel",
     videoUrl: "https://drive.google.com/file/d/14yoViPlj5ZNIf2ttMzT2455PAuzEKNZX/preview", // Replace with actual YouTube embed URL
     thumbnailUrl: "/thumbnailss/reel1.png",
-    tags: ["Automotive", "High Energy", "Music Sync"],
+    tags: ["Fashion", "Lifestyle", "Trendy"],
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ const projectsData = [
     category: "full-length",
     videoUrl: "https://www.youtube.com/embed/eHWZ4gYqRNw?si=fDl4XgV5Iiqszh95", // Replace with actual YouTube embed URL
     thumbnailUrl: "/thumbnailss/vid1.jpeg",
-    tags: ["Fashion", "Lifestyle", "Trendy"],
+    tags: ["Gaming", "Entertainment", "YouTube"],
   },
   {
     id: 3,
@@ -31,34 +31,26 @@ const projectsData = [
     category: "full-length",
     videoUrl: "https://www.youtube.com/embed/lI9prf38pe8?si=kv6N3GiR7B42SiVu", // Replace with actual YouTube embed URL
     thumbnailUrl: "/thumbnailss/vid2.jpeg",
-    tags: ["Documentary", "Cinematic", "Storytelling"],
+    tags: ["Finance", "Education", "YouTube"],
   },
   {
     id: 4,
-    title: "Tech Startup Launch",
-    description: "Commercial ad spot for a new AI productivity tool.",
+    title: "Best Laptop Buying Guide 2025 (India)",
+    description: "Buying a Laptop in 2025? Avoid These 5 Mistakes ❌ | Best Laptop Buying Guide 2025 (India)",
     category: "full-length",
-    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_4", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1000&auto=format&fit=crop",
-    tags: ["Commercial", "Corporate", "Clean"],
+    videoUrl: "https://www.youtube.com/embed/-ZUlPfhAnDA", // Replace with actual YouTube embed URL
+    thumbnailUrl: "/thumbnailss/vid3.jpg",
+    tags: ["Tech", "Youtube", "Faceless"],
   },
-  {
-    id: 5,
-    title: "Travel Vlog: Japan",
-    description: "Dynamic travel vlog edit with smooth transitions and sound design.",
-    category: "full-length",
-    videoUrl: "https://www.youtube.com/embed/VIDEO_ID_5", // Replace with actual YouTube embed URL
-    thumbnailUrl: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=1000&auto=format&fit=crop",
-    tags: ["Travel", "Vlog", "YouTube"],
-  },
+  
   {
     id: 6,
-    title: "Gym Motivation",
-    description: "Intense workout montage with glitch effects.",
+    title: "Ecommerce Mistakes to Avoid",
+    description: "Common pitfalls in e-commerce video marketing and how to steer clear of them for success.",
     category: "reel",
     videoUrl: "https://drive.google.com/file/d/10PRqIuIs2RsAUjj-zmg48pgW-IiHvjuX/preview", // Replace with actual YouTube embed URL
     thumbnailUrl: "/thumbnailss/reel2.png",
-    tags: ["Fitness", "Motivation", "Glitch"],
+    tags: ["Commercial", "E-commerce", "Dynamic"],
   },
   {
     id: 7,
@@ -67,36 +59,11 @@ const projectsData = [
     category: "reel",
     videoUrl: "https://drive.google.com/file/d/1uFfxom_j5vV1m5yN8Oq1wqsWy2Rirmpu/preview", // Replace with actual YouTube embed URL
     thumbnailUrl: "/thumbnailss/reel3.png",
-    tags: ["YouTube", "Shorts", "Viral"],
+    tags: ["Commercial", "Corporate", "Clean"],
   },
   // New Google Drive videos
-  {
-    id: 8,
-    title: "Your Google Drive Video 1",
-    description: "Description of your first Google Drive video.",
-    category: "reel",
-    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_1/preview", // Replace with actual Google Drive embed URL
-    thumbnailUrl: "/thumbnailss/gdrive1.jpg", // Add thumbnail image
-    tags: ["Custom", "Google Drive", "Reel"],
-  },
-  {
-    id: 9,
-    title: "Your Google Drive Video 2",
-    description: "Description of your second Google Drive video.",
-    category: "full-length",
-    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_2/preview", // Replace with actual Google Drive embed URL
-    thumbnailUrl: "/thumbnailss/gdrive2.jpg", // Add thumbnail image
-    tags: ["Custom", "Google Drive", "Full Length"],
-  },
-  {
-    id: 10,
-    title: "Your Google Drive Video 3",
-    description: "Description of your third Google Drive video.",
-    category: "reel",
-    videoUrl: "https://drive.google.com/file/d/YOUR_FILE_ID_3/preview", // Replace with actual Google Drive embed URL
-    thumbnailUrl: "/thumbnailss/gdrive3.jpg", // Add thumbnail image
-    tags: ["Custom", "Google Drive", "Reel"],
-  },
+  
+  
 ];
 
 // Hardcoded pricing data
@@ -104,7 +71,7 @@ const pricingData = [
   {
     id: 1,
     name: "Basic Reel",
-    price: "₹500",
+    price: "₹699",
     description: "Perfect for quick social media updates.",
     category: "reel",
     features: ["Up to 60 seconds", "Advanced Color Grade", "Sound Design & SFX", "2 Revisions"],
@@ -113,7 +80,7 @@ const pricingData = [
   {
     id: 2,
     name: "Pro Reel",
-    price: "₹1000",
+    price: "₹1099",
     description: "High-end editing for viral content.",
     category: "reel",
     features: ["Up to 90 seconds", "Advanced customized Color Grade", "Sound Design & SFX", "Motion Graphics", "5 Revisions"],
@@ -122,7 +89,7 @@ const pricingData = [
   {
     id: 3,
     name: "YouTube Standard",
-    price: "₹1500",
+    price: "₹1599",
     description: "Essential editing for YouTubers.",
     category: "full-length",
     features: ["Up to 15 minutes", "Basic Color Grade", "Sound Design & SFX", "Background Music", "2 Revisions"],
@@ -131,7 +98,7 @@ const pricingData = [
   {
     id: 4,
     name: "Cinematic Documentary",
-    price: "₹2000+",
+    price: "₹2199+",
     description: "Full production value for serious projects.",
     category: "full-length",
     features: ["Up to 30 minutes", "Cinematic Color Grading", "Advanced Sound Design", "Motion Graphics", "Unlimited Revisions"],

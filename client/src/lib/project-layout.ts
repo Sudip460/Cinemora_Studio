@@ -1,6 +1,6 @@
 import type { Project } from "@shared/schema";
 
-export const NARROW_MOBILE_BREAKPOINT = 300;
+export const MOBILE_BREAKPOINT = 640;
 export const DESKTOP_BREAKPOINT = 1024;
 
 export type FeaturedWorkLayout = "desktop" | "tablet" | "mobile";
@@ -84,7 +84,7 @@ export function getFeaturedWorkLayout(viewportWidth: number): FeaturedWorkLayout
     return "desktop";
   }
 
-  if (viewportWidth > NARROW_MOBILE_BREAKPOINT) {
+  if (viewportWidth >= MOBILE_BREAKPOINT) {
     return "tablet";
   }
 

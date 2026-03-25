@@ -39,7 +39,7 @@ export function DynamicBackground() {
       {[0, 1, 2, 3].map((i) => (
         <motion.div
           key={`flare-${i}`}
-          className="absolute w-96 h-96 rounded-full pointer-events-none"
+          className="absolute hidden rounded-full pointer-events-none sm:block sm:h-72 sm:w-72 lg:h-96 lg:w-96"
           style={{
             background: i % 2 === 0 
               ? "radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%)"
@@ -87,7 +87,7 @@ export function DynamicBackground() {
 
       {/* Editing Software UI Frames */}
       <motion.div
-        className="absolute top-1/4 -left-20 w-96 h-24 border-2 border-primary/20 rounded-lg opacity-30"
+        className="absolute top-1/4 -left-20 hidden h-24 w-96 rounded-lg border-2 border-primary/20 opacity-30 lg:block"
         animate={{ rotate: [0, 5, -5, 0], x: [0, 20, 0] }}
         transition={{ duration: 6, repeat: Infinity }}
       >
@@ -101,7 +101,7 @@ export function DynamicBackground() {
       </motion.div>
 
       <motion.div
-        className="absolute bottom-1/4 -right-20 w-80 h-20 border-2 border-secondary/20 rounded-lg opacity-30"
+        className="absolute bottom-1/4 -right-20 hidden h-20 w-80 rounded-lg border-2 border-secondary/20 opacity-30 lg:block"
         animate={{ rotate: [0, -5, 5, 0], x: [0, -20, 0] }}
         transition={{ duration: 7, repeat: Infinity }}
       >
@@ -139,7 +139,7 @@ export function DynamicBackground() {
         return (
           <motion.div
             key={`color-${i}`}
-            className="absolute rounded-full opacity-20"
+            className="absolute hidden rounded-full opacity-20 md:block"
             style={{
               width: 40 + i * 20,
               height: 40 + i * 20,
@@ -188,7 +188,7 @@ export function DynamicBackground() {
 
       {/* Light Theme Animated Shapes */}
       <motion.div
-        className="absolute top-10 right-10 w-72 h-72 rounded-full dark:hidden"
+        className="absolute right-4 top-10 hidden h-56 w-56 rounded-full dark:hidden sm:block lg:right-10 lg:h-72 lg:w-72"
         style={{
           background: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
         }}
@@ -205,7 +205,7 @@ export function DynamicBackground() {
       />
       
       <motion.div
-        className="absolute bottom-20 left-20 w-80 h-80 rounded-full dark:hidden"
+        className="absolute bottom-12 left-4 hidden h-64 w-64 rounded-full dark:hidden sm:block lg:bottom-20 lg:left-20 lg:h-80 lg:w-80"
         style={{
           background: "radial-gradient(circle, rgba(249, 115, 22, 0.25) 0%, transparent 70%)",
         }}
@@ -222,7 +222,7 @@ export function DynamicBackground() {
       />
 
       <motion.div
-        className="absolute top-1/2 left-1/3 w-96 h-96 rounded-full dark:hidden"
+        className="absolute left-1/3 top-1/2 hidden h-72 w-72 rounded-full dark:hidden lg:block lg:h-96 lg:w-96"
         style={{
           background: "radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%)",
         }}
