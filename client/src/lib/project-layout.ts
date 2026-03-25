@@ -1,6 +1,6 @@
 import type { Project } from "@shared/schema";
 
-export const NARROW_MOBILE_BREAKPOINT = 300;
+export const NARROW_MOBILE_BREAKPOINT = 640;
 export const DESKTOP_BREAKPOINT = 1024;
 
 export type FeaturedWorkLayout = "desktop" | "tablet" | "mobile";
