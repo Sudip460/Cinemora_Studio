@@ -1,5 +1,5 @@
+import { lazy, Suspense, useEffect } from "react";
 import { Switch, Route, useLocation } from "wouter";
-import { useEffect } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,11 +7,20 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import NotFound from "@/pages/not-found";
 
-// Pages
-import Home from "@/pages/Home";
-import Work from "@/pages/Work";
-import Services from "@/pages/Services";
-import Contact from "@/pages/Contact";
+const Home = lazy(() => import("@/pages/Home"));
+const Work = lazy(() => import("@/pages/Work"));
+const Services = lazy(() => import("@/pages/Services"));
+const Contact = lazy(() => import("@/pages/Contact"));
+
+function RouteFallback() {
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="container mx-auto flex min-h-screen items-center justify-center px-4">
+        <div className="h-10 w-10 animate-spin rounded-full border-4 border-primary/25 border-t-primary" />
+      </div>
+    </div>
+  );
+}
 
 function Router() {
   const [location] = useLocation();
@@ -21,13 +30,15 @@ function Router() {
   }, [location]);
 
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/work" component={Work} />
-      <Route path="/services" component={Services} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <Suspense fallback={<RouteFallback />}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/work" component={Work} />
+        <Route path="/services" component={Services} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </Suspense>
   );
 }
 
