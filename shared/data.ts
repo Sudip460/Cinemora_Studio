@@ -1,4 +1,4 @@
-import type { PricingPackage, Project } from "./schema";
+import type { Project, ServicePackage } from "./schema";
 
 export const projectsData: Project[] = [
   {
@@ -30,12 +30,12 @@ export const projectsData: Project[] = [
   },
   {
     id: 4,
-    title: "Best Laptop Buying Guide 2025 (India)",
-    description: "Buying a Laptop in 2025? Avoid These 5 Mistakes.",
+    title: "GunGod - Season 3 Trailer",
+    description: "The ultimate showdown is here! Get ready for the most intense season of GunGod yet.",
     category: "full-length",
-    videoUrl: "https://www.youtube.com/embed/-ZUlPfhAnDA",
-    thumbnailUrl: "/thumbnailss/vid3.jpg",
-    tags: ["Tech", "Youtube", "Faceless"],
+    videoUrl: "https://drive.google.com/file/d/19UCuwh_2wY6zGjh9M7vC1JgVB1BYwLfb/preview",
+    thumbnailUrl: "/thumbnailss/vid3.jpeg",
+    tags: ["Gaming", "Trailer", "Commercial"],
   },
   {
     id: 6,
@@ -57,41 +57,33 @@ export const projectsData: Project[] = [
   },
 ];
 
-export const pricingData: PricingPackage[] = [
+export const serviceData: ServicePackage[] = [
   {
     id: 1,
     name: "Basic Reel",
-    price: "₹699",
     description: "Perfect for quick social media updates.",
     category: "reel",
     features: ["Up to 60 seconds", "Advanced Color Grade", "Sound Design & SFX", "2 Revisions"],
-    isPopular: false,
   },
   {
     id: 2,
     name: "Pro Reel",
-    price: "₹1099",
     description: "High-end editing for viral content.",
     category: "reel",
     features: ["Up to 90 seconds", "Advanced customized Color Grade", "Sound Design & SFX", "Motion Graphics", "5 Revisions"],
-    isPopular: true,
   },
   {
     id: 3,
     name: "YouTube Standard",
-    price: "₹1599",
     description: "Essential editing for YouTubers.",
     category: "full-length",
     features: ["Up to 15 minutes", "Basic Color Grade", "Sound Design & SFX", "Background Music", "2 Revisions"],
-    isPopular: false,
   },
   {
     id: 4,
     name: "Cinematic Documentary",
-    price: "₹2199+",
     description: "Full production value for serious projects.",
     category: "full-length",
     features: ["Up to 30 minutes", "Cinematic Color Grading", "Advanced Sound Design", "Motion Graphics", "Unlimited Revisions"],
-    isPopular: true,
   },
 ];

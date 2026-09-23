@@ -1,6 +1,6 @@
 import type { Express } from "express";
 import type { Server } from "http";
-import { pricingData, projectsData } from "@shared/data";
+import { projectsData } from "@shared/data";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import nodemailer from "nodemailer";
@@ -29,15 +29,6 @@ export async function registerRoutes(
     res.json(project);
   });
 
-  app.get(api.pricing.list.path, async (req, res) => {
-    const category = req.query.category as "reel" | "full-length" | undefined;
-    const filteredPricing = category
-      ? pricingData.filter((item) => item.category === category)
-      : pricingData;
-
-    res.json(filteredPricing);
-  });
-
   app.post(api.contact.submit.path, async (req, res) => {
     try {
       const input = api.contact.submit.input.parse(req.body);
@@ -56,7 +47,7 @@ New Project Inquiry from Cinemora Studio Website
 Name: ${input.name}
 Email: ${input.email}
 Service: ${input.serviceType}
-${input.servicePlan ? `Service Plan: ${input.servicePlan}` : ""}
+${input.serviceOption ? `Service option: ${input.serviceOption}` : ""}
 Message:
 ${input.message}
 

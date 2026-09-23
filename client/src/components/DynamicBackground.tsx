@@ -4,13 +4,13 @@ export function DynamicBackground() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {/* Animated Grid Background */}
-      <svg className="absolute inset-0 w-full h-full opacity-70 dark:opacity-20" preserveAspectRatio="none">
+      <svg className="absolute inset-0 h-full w-full opacity-85 dark:opacity-20" preserveAspectRatio="none">
         <defs>
           <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--primary) / 0.3)" strokeWidth="0.5"/>
+            <path d="M 50 0 L 0 0 0 50" fill="none" stroke="hsl(var(--primary) / 0.38)" strokeWidth="0.5"/>
           </pattern>
           <pattern id="grid-lg" width="100" height="100" patternUnits="userSpaceOnUse">
-            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="hsl(var(--secondary) / 0.2)" strokeWidth="0.5"/>
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="hsl(var(--secondary) / 0.28)" strokeWidth="0.5"/>
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
@@ -185,6 +185,39 @@ export function DynamicBackground() {
 
       {/* Light Theme Enhanced - Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/40 via-orange-50/20 to-pink-50/40 dark:from-transparent dark:via-transparent dark:to-transparent pointer-events-none" />
+
+      {/* Light-theme depth: fine dot fields and lens-like glass forms. */}
+      <div
+        className="absolute inset-0 hidden opacity-50 dark:hidden sm:block"
+        style={{
+          backgroundImage: "radial-gradient(rgba(249, 115, 22, 0.45) 0.75px, transparent 0.75px)",
+          backgroundPosition: "18px 22px",
+          backgroundSize: "24px 24px",
+          maskImage: "linear-gradient(135deg, transparent 5%, black 30%, transparent 72%)",
+        }}
+      />
+
+      <motion.div
+        className="absolute -left-16 top-[18%] hidden h-56 w-56 rounded-[3rem] border border-orange-400/30 bg-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-sm dark:hidden md:block"
+        animate={{ rotate: [12, 22, 12], y: [0, -14, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <div className="absolute inset-6 rounded-[2.25rem] border border-sky-400/25" />
+        <div className="absolute inset-14 rounded-[1.5rem] bg-gradient-to-br from-primary/10 to-secondary/10" />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-[13%] right-[7%] hidden h-28 w-48 overflow-hidden rounded-[1.75rem] border border-sky-400/25 bg-white/25 p-3 shadow-[0_12px_35px_rgba(14,165,233,0.1)] backdrop-blur-sm dark:hidden lg:block"
+        animate={{ rotate: [-8, -3, -8], y: [0, 12, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+      >
+        <div className="mb-3 h-2 w-16 rounded-full bg-primary/35" />
+        <div className="flex items-end gap-1.5">
+          {[32, 58, 43, 70, 48, 62, 36].map((height, index) => (
+            <span key={index} className="w-full rounded-t-full bg-gradient-to-t from-primary/45 to-secondary/35" style={{ height }} />
+          ))}
+        </div>
+      </motion.div>
 
       {/* Light Theme Animated Shapes */}
       <motion.div

@@ -28,14 +28,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
-const servicePlans = {
+const serviceOptions = {
   reel: [
-    { value: "basic-reel", label: "Basic Reel - ₹500" },
-    { value: "pro-reel", label: "Pro Reel - ₹1000" },
+    { value: "basic-reel", label: "Basic Reel" },
+    { value: "pro-reel", label: "Pro Reel" },
   ],
   "full-length": [
-    { value: "youtube-standard", label: "YouTube Standard - ₹1500" },
-    { value: "cinematic-doc", label: "Cinematic Documentary - ₹2000+" },
+    { value: "youtube-standard", label: "YouTube Standard" },
+    { value: "cinematic-doc", label: "Cinematic Documentary" },
   ],
 };
 
@@ -52,7 +52,7 @@ export default function Contact() {
       contactNo: "",
       message: "",
       serviceType: "reel",
-      servicePlan: "",
+      serviceOption: "",
     },
   });
 
@@ -61,7 +61,7 @@ export default function Contact() {
   useEffect(() => {
     setSelectedService(serviceType as "reel" | "full-length" | "other" | null);
     if (serviceType !== "reel" && serviceType !== "full-length") {
-      form.setValue("servicePlan", "");
+      form.setValue("serviceOption", "");
     }
   }, [serviceType, form]);
 
@@ -75,7 +75,7 @@ export default function Contact() {
       formData.append("email", data.email);
       formData.append("contactNo", data.contactNo);
       formData.append("serviceType", data.serviceType || "");
-      formData.append("servicePlan", data.servicePlan || "");
+      formData.append("serviceOption", data.serviceOption || "");
       formData.append("message", data.message);
       formData.append("from_name", "Cinemora Studio Website");
 
@@ -193,7 +193,7 @@ export default function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="artistic-card border-2 border-foreground/10 bg-gradient-to-br from-card via-card/90 to-background p-6 shadow-2xl sm:p-8 md:p-10 lg:p-12"
+            className="ios-surface rounded-[1.75rem] p-6 sm:rounded-[2rem] sm:p-8 md:p-10 lg:p-12"
           >
             <h2 className="mb-8 text-2xl font-serif font-black text-foreground sm:mb-10 sm:text-3xl">Project Inquiry</h2>
             
@@ -210,7 +210,7 @@ export default function Contact() {
                         <Input 
                           placeholder="John Doe" 
                           {...field} 
-                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
+                          className="ios-input h-12 text-foreground placeholder:text-muted-foreground font-medium"
                           data-testid="input-name"
                         />
                       </FormControl>
@@ -230,7 +230,7 @@ export default function Contact() {
                           placeholder="john@example.com" 
                           type="email" 
                           {...field} 
-                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
+                          className="ios-input h-12 text-foreground placeholder:text-muted-foreground font-medium"
                           data-testid="input-email"
                         />
                       </FormControl>
@@ -250,7 +250,7 @@ export default function Contact() {
                           placeholder="xx xxxx xxxx" 
                           type="tel" 
                           {...field} 
-                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary h-12 font-medium"
+                          className="ios-input h-12 text-foreground placeholder:text-muted-foreground font-medium"
                           data-testid="input-contact"
                         />
                       </FormControl>
@@ -268,7 +268,7 @@ export default function Contact() {
                         <FormLabel className="text-foreground font-black text-sm">Service</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value || "reel"}>
                           <FormControl>
-                            <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-service">
+                            <SelectTrigger className="ios-input h-12 text-foreground font-medium" data-testid="select-service">
                               <SelectValue placeholder="Select project type" />
                             </SelectTrigger>
                           </FormControl>
@@ -286,20 +286,20 @@ export default function Contact() {
                   {(selectedService === "reel" || selectedService === "full-length") && (
                     <FormField
                       control={form.control}
-                      name="servicePlan"
+                          name="serviceOption"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-foreground font-black text-sm">Service Plan</FormLabel>
+                          <FormLabel className="text-foreground font-black text-sm">Service Option</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value || ""}>
                             <FormControl>
-                              <SelectTrigger className="bg-background border-2 border-foreground/10 text-foreground h-12 font-medium" data-testid="select-plan">
-                                <SelectValue placeholder="Select plan" />
+                              <SelectTrigger className="ios-input h-12 text-foreground font-medium" data-testid="select-plan">
+                              <SelectValue placeholder="Select an option" />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent className="bg-card border-2 border-foreground/10">
-                              {servicePlans[selectedService as "reel" | "full-length"]?.map((plan) => (
-                                <SelectItem key={plan.value} value={plan.value}>
-                                  {plan.label}
+                              {serviceOptions[selectedService as "reel" | "full-length"]?.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  {option.label}
                                 </SelectItem>
                               ))}
                             </SelectContent>
@@ -319,8 +319,8 @@ export default function Contact() {
                       <FormLabel className="text-foreground font-black text-sm">Project Details</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Tell us about your vision, timeline, budget, and creative direction..." 
-                          className="bg-background border-2 border-foreground/10 text-foreground placeholder:text-muted-foreground focus:border-primary min-h-[160px] resize-none font-medium" 
+                          placeholder="Tell us about your vision, timeline, and creative direction..."
+                          className="ios-input min-h-[160px] resize-none text-foreground placeholder:text-muted-foreground font-medium"
                           {...field}
                           data-testid="textarea-message"
                         />
@@ -337,7 +337,7 @@ export default function Contact() {
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full h-12 bg-gradient-to-r from-primary to-orange-600 dark:to-orange-500 hover:shadow-lg text-white font-black text-base tracking-wider transition-all"
+                    className="h-12 w-full rounded-xl bg-gradient-to-b from-orange-400 to-primary text-base font-black tracking-wider text-white shadow-[0_12px_28px_rgba(255,127,0,0.25)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(255,127,0,0.35)]"
                     data-testid="button-submit"
                   >
                     {isSubmitting ? (

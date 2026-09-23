@@ -25,7 +25,7 @@ New Project Inquiry from Cinemora Studio Website
 Name: ${input.name}
 Email: ${input.email}
 Service: ${input.serviceType}
-${input.servicePlan ? `Service Plan: ${input.servicePlan}` : ""}
+${input.serviceOption ? `Service option: ${input.serviceOption}` : ""}
 Message:
 ${input.message}
 

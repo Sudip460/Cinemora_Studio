@@ -77,11 +77,11 @@ export default function Home() {
   }));
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="flex min-h-screen flex-col overflow-x-hidden bg-background text-foreground">
       <Navbar />
 
       {/* HERO - Enhanced with Dynamic Background */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-14 pt-24 sm:px-6 sm:pt-28">
+      <section className="relative order-0 flex min-h-screen items-center justify-center overflow-hidden px-4 pb-14 pt-24 sm:px-6 sm:pt-28">
         <DynamicBackground />
 
         {/* Content */}
@@ -200,7 +200,7 @@ export default function Home() {
       </motion.div>
 
       {/* About */}
-      <section className="relative overflow-hidden border-y border-foreground/10 bg-gradient-to-b from-background via-card/30 to-background py-20 sm:py-24 lg:py-32">
+      <section className="relative order-[30] overflow-hidden border-y border-foreground/10 bg-gradient-to-b from-background via-card/30 to-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -287,7 +287,7 @@ export default function Home() {
       </section>
 
       {/* Featured Work - Grid with Reel/Full-Length Separation */}
-      <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
+      <section className="relative order-[20] overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div 
@@ -371,7 +371,7 @@ export default function Home() {
       </section>
 
       {/* Process */}
-      <section className="relative overflow-hidden border-y border-foreground/10 bg-gradient-to-r from-card via-background to-card py-20 sm:py-24 lg:py-32">
+      <section className="relative order-[10] overflow-hidden border-y border-foreground/10 bg-gradient-to-r from-card via-background to-card py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -396,7 +396,7 @@ export default function Home() {
       </section>
       
       {/* Services */}
-      <section className="relative overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
+      <section className="relative order-[40] overflow-hidden bg-background py-20 sm:py-24 lg:py-32">
         <DynamicBackground />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -469,7 +469,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden py-24 sm:py-32 lg:py-40">
+      <section className="relative order-[50] overflow-hidden py-24 sm:py-32 lg:py-40">
         <DynamicBackground />
         
         <div className="container relative z-10 mx-auto px-4 text-center">
@@ -509,7 +509,9 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
+      <div className="order-[60]">
+        <Footer />
+      </div>
     </div>
   );
 }

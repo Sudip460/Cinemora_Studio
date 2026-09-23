@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { insertContactSchema, Project, PricingPackage } from './schema';
+import { insertContactSchema, Project } from './schema';
 
 export const errorSchemas = {
   validation: z.object({
@@ -34,18 +34,6 @@ export const api = {
         404: errorSchemas.notFound,
       },
     }
-  },
-  pricing: {
-    list: {
-      method: 'GET' as const,
-      path: '/api/pricing',
-       input: z.object({
-        category: z.enum(['reel', 'full-length']).optional(),
-      }).optional(),
-      responses: {
-        200: z.array(z.custom<PricingPackage>()),
-      },
-    },
   },
   contact: {
     submit: {

@@ -25,14 +25,14 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 py-3" : "bg-transparent py-6"
+      className={`fixed inset-x-0 top-0 z-50 px-3 transition-all duration-300 sm:px-5 ${
+        scrolled ? "py-3" : "py-4 sm:py-5"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between gap-3 px-4 md:px-6">
+      <div className="ios-glass container mx-auto flex items-center justify-between gap-3 rounded-2xl px-4 py-2.5 sm:rounded-[1.35rem] md:px-5">
         <Link href="/">
           <div className="group flex min-w-0 items-center gap-3 cursor-pointer">
-            <div className="relative overflow-hidden rounded-sm border border-foreground/20 group-hover:border-primary/50 transition-colors">
+            <div className="relative overflow-hidden rounded-xl border border-foreground/15 transition-colors group-hover:border-primary/50">
               <img 
                 src={rectLogo} 
                 alt="Cinemora Logo" 
@@ -47,23 +47,23 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden items-center gap-2 md:flex">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
               <span 
-                className={`cursor-pointer font-medium text-sm tracking-wide transition-colors duration-200 hover:text-primary ${
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                className={`cursor-pointer rounded-full px-3 py-2 text-sm font-semibold tracking-wide transition-all duration-200 hover:bg-primary/10 hover:text-primary ${
+                  location === link.href ? "bg-primary/15 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]" : "text-muted-foreground"
                 }`}
               >
                 {link.label.toUpperCase()}
               </span>
             </Link>
           ))}
-          <div className="flex items-center gap-3">
+          <div className="ml-2 flex items-center gap-2 border-l border-foreground/10 pl-3">
             <ThemeToggle />
             <Link href="/contact">
-              <button className="px-6 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-bold tracking-wider rounded transition-all hover:shadow-lg dark:shadow-[0_0_20px_rgba(109,40,217,0.5)]">
-                GET A QUOTE
+              <button className="rounded-full bg-gradient-to-b from-orange-400 to-primary px-5 py-2.5 text-sm font-black tracking-wide text-white shadow-[0_8px_20px_rgba(255,127,0,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(255,127,0,0.42)] active:translate-y-0">
+                GET IN TOUCH
               </button>
             </Link>
           </div>
@@ -73,7 +73,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button 
-            className="rounded-md p-1 text-foreground"
+            className="rounded-xl border border-foreground/10 bg-foreground/5 p-2 text-foreground transition-colors hover:bg-primary/10"
             onClick={() => setMobileOpen(!mobileOpen)}
             data-testid="button-menu-toggle"
           >
@@ -89,14 +89,14 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b border-foreground/10 overflow-hidden"
+            className="ios-glass mx-auto mt-2 max-w-[calc(100%-0.5rem)] overflow-hidden rounded-2xl md:hidden"
           >
-            <div className="flex flex-col gap-4 p-4">
+            <div className="flex flex-col gap-1 p-3">
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
                   <span 
-                    className={`block py-2 text-lg font-display font-bold cursor-pointer ${
-                      location === link.href ? "text-primary" : "text-foreground"
+                    className={`block cursor-pointer rounded-xl px-4 py-3 text-base font-display font-bold transition-colors ${
+                      location === link.href ? "bg-primary/15 text-primary" : "text-foreground hover:bg-foreground/5"
                     }`}
                     onClick={() => setMobileOpen(false)}
                   >
@@ -106,10 +106,10 @@ export function Navbar() {
               ))}
               <Link href="/contact">
                 <button
-                  className="mt-2 rounded-lg bg-primary px-4 py-3 text-sm font-bold tracking-wider text-white"
+                  className="mt-2 rounded-xl bg-gradient-to-r from-primary to-orange-500 px-4 py-3.5 text-sm font-black tracking-wider text-white shadow-lg"
                   onClick={() => setMobileOpen(false)}
                 >
-                  GET A QUOTE
+                  GET IN TOUCH
                 </button>
               </Link>
             </div>
